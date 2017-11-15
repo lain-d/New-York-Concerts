@@ -1,5 +1,7 @@
 require('marko/node-require');
 var express = require('express');
+var favicon = require('serve-favicon');
+var path = require('path');
 var markoExpress = require('marko/express');
 var template = require('./page');
 require('datejs');
@@ -8,7 +10,8 @@ var app = express();
 var port = process.env.PORT || 8080;
 var p = 0;
 var data = [];
-
+var compression = require('compression');
+app.use(compression());
 function getData(page) {
     console.log("Getting Concert Info for page " + page)
     var api = "http://api.jambase.com/events?zipCode=10010&radius=50&page=" + page + "&api_key=45gxnvd2mm8ysvc72xkzcsrv&o=json";
