@@ -21,7 +21,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!doctype html><html class=\"no-js\" lang=\"\"><head><meta charset=\"utf-8\"><meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\"><title>NYC Concerts</title><meta name=\"description\" content=\"A Lo-Fi list of upcoming NYC concerts, powered by JamBase\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><style>\n        .head{\n            width: 100%;\n            text-align: center;\n        }\n        .container{\n            width: 100%;\n            max-width: 980px;\n            margin: auto;\n            text-align: center;\n        }\n        .container table, tr, td, th{\n            text-align: left;\n            border: solid 1px;\n        }\n    </style></head><body>");
+  out.w("<!doctype html><html class=\"no-js\" lang=\"\"><head><meta charset=\"utf-8\"><meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\"><title>NYC Concerts</title><meta name=\"description\" content=\"A Lo-Fi list of upcoming NYC concerts, powered by JamBase\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><style>\n    a{\n    color: black;\n    }\n    a:hover{\n    color: #222;\n    }\n        .head{\n            width: 100%;\n            text-align: center;\n        }\n        .container{\n            width: 100%;\n            max-width: 980px;\n            margin: auto;\n            text-align: center;\n        }\n        .container table, tr, td, th{\n            text-align: left;\n            border: solid 1px;\n        }\n    </style></head><body>");
 
   component_globals_tag({}, out);
 
@@ -46,7 +46,7 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(event.Venue.Name) +
       "</a></td><td>" +
       marko_escapeXml(event.Venue.City) +
-      "," +
+      ", " +
       marko_escapeXml(event.Venue.StateCode) +
       "</td></tr>");
   });

@@ -7,6 +7,12 @@
         <meta name="description" content="A Lo-Fi list of upcoming NYC concerts, powered by JamBase">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+    a{
+    color: black;
+    }
+    a:hover{
+    color: #222;
+    }
         .head{
             width: 100%;
             text-align: center;
@@ -45,7 +51,7 @@
                     <td>${new Date(event.Date).toString("ddd MMM d, yyyy")}</td>
                     <td><a href="${event.TicketUrl}"><span for(Artist in event.Artists)>${Artist.Name}&nbsp;</span></a></td>
                     <td><a href="${event.Venue.Url}">${event.Venue.Name}</a></td>
-                    <td>${event.Venue.City},${event.Venue.StateCode}</td>
+                    <td>${event.Venue.City}, ${event.Venue.StateCode}</td>
                 </tr>
             </table>
             <h4>powered by <a href="http://www.JamBase.com">JamBase™</a></h4>
