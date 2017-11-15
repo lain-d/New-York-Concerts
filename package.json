@@ -1,0 +1,31 @@
+{
+  "name": "nycconcerts",
+  "version": "1.0.0",
+  "description": "Bare Bones List of NYC concerts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dan2600/New-York-Concerts.git"
+  },
+  "keywords": [
+    "concerts"
+  ],
+  "author": "Daniel Spagnoli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dan2600/New-York-Concerts/issues"
+  },
+  "homepage": "https://github.com/dan2600/New-York-Concerts#readme",
+  "dependencies": {
+    "compression": "^1.7.1",
+    "datejs": "^1.0.0-rc3",
+    "express": "^4.16.2",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "marko": "^4.5.6"
+  }
+}

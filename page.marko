@@ -1,0 +1,56 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>NYC Concerts</title>
+        <meta name="description" content="A Lo-Fi list of upcoming NYC concerts, powered by JamBase">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .head{
+            width: 100%;
+            text-align: center;
+        }
+        .container{
+            width: 100%;
+            max-width: 980px;
+            margin: auto;
+            text-align: center;
+        }
+        .container table, tr, td, th{
+            text-align: left;
+            border: solid 1px;
+        }
+    </style>
+
+
+
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+        <div class="head">
+            <h1>NYC Concerts</h1>
+        </div>
+        <div class="container">
+            <table>
+                <tr>
+                <th  style="width:15%">Date</th>
+                <th style="width:50%">Artists</th>
+                <th style="width:20%">Venue</th>
+                <th style="width:15%">City</th>    
+                </tr>
+                <tr for(event in input.events)>
+                    <td>${new Date(event.Date).toString("ddd MMM d, yyyy")}</td>
+                    <td><a href="${event.TicketUrl}"><span for(Artist in event.Artists)>${Artist.Name}&nbsp;</span></a></td>
+                    <td><a href="${event.Venue.Url}">${event.Venue.Name}</a></td>
+                    <td>${event.Venue.City},${event.Venue.StateCode}</td>
+                </tr>
+            </table>
+            <h4>powered by <a href="http://www.JamBase.com">JamBase™</a></h4>
+
+        </div>
+
+    </body>
+</html>
