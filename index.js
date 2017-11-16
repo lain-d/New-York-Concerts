@@ -18,6 +18,7 @@ app.use(compression());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 function getData(page) {
     console.log("Getting Concert Info for page " + page)
+
     var api = "http://api.jambase.com/events?zipCode=10010&radius=50&page=" + page + "&api_key=45gxnvd2mm8ysvc72xkzcsrv&o=json";
 
     http.get(api, function(res) {
@@ -30,11 +31,20 @@ function getData(page) {
         res.on('end', function() {
         	try{
             var result = JSON.parse(body);
+            if(p === 0)
+            {
+                data = [];
+            }
             }
             catch(e){
             	p=11;
             	var result = {};
+                if(data.length < 1){
             	result.Events = [ddd, ddd, ddd2, ddd, ddd, ddd, ddd2];
+                }
+                else{
+                    result.Events = [];
+                }
             }
             for (i = 0; i < result.Events.length; i++) {
 
