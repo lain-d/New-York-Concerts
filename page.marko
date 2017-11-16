@@ -14,7 +14,12 @@
     color: black;
     }
     .th{
-        float:left;
+    float:left;
+    border: solid 1px #EFEFEF;
+    width: 25% !important;
+    font-size: 75%;
+    box-sizing: border-box;
+    
     }
     a:hover{
     color: #222;
@@ -54,13 +59,13 @@
             <h1>NYC Concerts</h1>
         </div>
         <div class="container">
-            <div style="width:100%">
+            <div style="width:100%; overflow:auto">
                 <div class="th" style="width:15%">Date</div>
                 <div class="th" style="width:50%">Artists</div>
                 <div class="th" style="width:20%">Venue</div>
                 <div class="th" style="width:15%">City</div>  
                 </div>  
-                <div style="width:100%" for(event in input.events)>
+                <div style="width:100%; overflow:auto" for(event in input.events)>
                     <div class="th" style="width:15%">${new Date(event.Date).toString("ddd MMM d, yyyy")}</div>
                     <div class="th" style="width:50%"><a href="${event.TicketUrl}"><span for(Artist in event.Artists)>${Artist.Name}&nbsp;</span></a></div>
                     <div class="th" style="width:20%"><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
