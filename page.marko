@@ -6,42 +6,10 @@
         <title>NYC Concerts</title>
         <meta name="description" content="A Lo-Fi list of upcoming NYC concerts, powered by JamBase">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Istok+Web:400,700" rel="stylesheet">
     <style>
-    body, html{
-        font-family: Verdana, sans-serif;
-    }
-    a{
-    color: black;
-    }
-    .th{
-    float:left;
-    border: solid 1px #EFEFEF;
-    width: 25% !important;
-    font-size: 75%;
-    box-sizing: border-box;
-    word-wrap: break-word;
-    
-    }
-    a:hover{
-    color: #222;
-    }
-        .head{
-            width: 100%;
-            text-align: center;
-        }
-        .container{
-            width: 100%;
-            max-width: 980px;
-            margin: auto;
-            text-align: center;
-        }
-        .container table, tr, td, th{
-            text-align: left;
-            border: solid 1px;
-        }
-     
+body,html{font-family:'Istok Web','Verdana',sans-serif}a{color:black;text-decoration:none}.th{font-size:85%;box-sizing:border-box;word-wrap:break-word;display:table-cell;vertical-align:middle;width:25%;border:solid 1px #EFEFEF;page-break-before:auto;page-break-after:auto;page-break-inside:avoid}.date{width:7%}.city{width:15%}a:hover{color:#222;font-weight:700;letter-spacing:-.5px}.head{width:100%;text-align:center}.container{width:100%;max-width:980px;margin:auto;text-align:center;display:table}.container table,tr,td,th{text-align:left;border:solid 1px}@media screen and (min-width:1280px){.th{font-size:100%}.date{width:8%}}@media screen and (max-width:745px){.th{font-size:75%;width:25%}.city{width:22%}.date{width:16%}}
     </style>
-
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -49,7 +17,6 @@
     enable_page_level_ads: true
   });
 </script>
-
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -59,20 +26,20 @@
             <h1>NYC Concerts</h1>
         </div>
         <div class="container">
-            <div style="width:100%; overflow:auto">
-                <div class="th" style="width:15%">Date</div>
-                <div class="th" style="width:50%">Artists</div>
-                <div class="th" style="width:20%">Venue</div>
-                <div class="th" style="width:15%">City</div>  
-                </div>  
-                <div style="width:100%; overflow:auto" for(event in input.events)>
-                    <div class="th" style="width:15%">${new Date(event.Date).toString("ddd MMM d, yyyy")}</div>
-                    <div class="th" style="width:50%"><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}&nbsp;</span></a></div>
-                    <div class="th" style="width:20%"><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
-                    <div class="th" style="width:15%">${event.Venue.City}, ${event.Venue.StateCode}</div>
+            <div style="width:100%; overflow:auto; display:table">
+                <div class="th date" >Date</div>
+                <div class="th" >Artists</div>
+                <div class="th" >Venue</div>
+                <div class="th city" >City</div>
                 </div>
-  
-            <h4>powered by <a href="http://www.JamBase.com">JamBase™</a></h4>
+                <div style="width:100%; overflow:auto; display: table;" for(event in input.events)>
+                    <div class="th date" >${new Date(event.Date).toString("ddd MMM d")}</div>
+                    <div class="th" ><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}&nbsp;</span></a></div>
+                    <div class="th" ><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
+                    <div class="th city" ><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
+                </div>
+
+            <h4 style="font-size: 50%; padding-top:10px">powered by <b><a style="text-weight:700" href="http://www.JamBase.com">JamBase™</a></b></h4>
 
         </div>
 
