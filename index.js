@@ -16,7 +16,7 @@ app.use(compression());
 
 function getData(page) {
     console.log("Getting Concert Info for page " + page)
-    var api = "http://api.jambase.com/events?zipCode=10010&radius=50&page=" + page + "&api_key=45gxnvd2mm8ysvc72xkzcsrv&o=json";
+    var api = "http://api.jambase.com/events?zipCode=10010&radius=50&page=" + page + "&api_key=j3ad9cez3zcbfkp6679jqz2s&o=json";
 
     http.get(api, function(res) {
         var body = '';
