@@ -22,7 +22,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!doctype html><html class=\"no-js\" lang=\"\"><head><meta charset=\"utf-8\"><meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\"><title>NYC Concerts</title><meta name=\"description\" content=\"A Lo-Fi list of upcoming NYC concerts, powered by JamBase\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link href=\"https://fonts.googleapis.com/css?family=Istok+Web:400,700\" rel=\"stylesheet\"><style>\n    body, html{\n        font-family: 'Istok Web', 'Verdana', sans-serif;\n    }\n    a{\n    color: black;\n    text-decoration: none;\n    }\n    .th{\nfont-size: 85%;\n    box-sizing: border-box;\n    word-wrap: break-word;\n    display: table-cell;\n    vertical-align: middle;\n        width: 25%;\n        border: solid 1px #EFEFEF;\n            page-break-before: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */\n    page-break-after: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */\n    page-break-inside: avoid; \n\n    }\n    .date{\n    width: 7%;\n    }\n        .city{\n    width: 15%;\n    }\n\n    a:hover{\n    color: #222;\n    font-weight: 700;\n    letter-spacing: -.5px;\n    }\n        .head{\n            width: 100%;\n            text-align: center;\n        }\n        .container{\n            width: 100%;\n            max-width: 980px;\n            margin: auto;\n            text-align: center;\n            display: table;\n        }\n        .container table, tr, td, th{\n            text-align: left;\n            border: solid 1px;\n        }\n        @media screen and (min-width:1280px)\n        {\n         .th{\n         font-size: 100%;\n         }\n             .date{\n    width: 8%;\n    }\n\n\n        }\n\n                @media screen and (max-width:745px)\n        {\n    \n         .th {\n         font-size: 75%;\n         width: 25%;\n         }\n        .city\n        {\n        width: 22%;\n        }\n             .date {\n        width: 16%;\n        }\n        }\n\n    </style><script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script><script>\n  (adsbygoogle = window.adsbygoogle || []).push({\n    google_ad_client: \"ca-pub-8472176423353956\",\n    enable_page_level_ads: true\n  });\n</script></head><body>");
+  out.w("<!doctype html><html class=\"no-js\" lang=\"\"><head><meta charset=\"utf-8\"><meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\"><title>NYC Concerts</title><meta name=\"description\" content=\"A LoFi list of upcoming NYC concerts, powered by JamBase\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-109770705-1\"></script><script>\n  \t\twindow.dataLayer = window.dataLayer || [];\n  \t\tfunction gtag(){dataLayer.push(arguments);}\n  \t\tgtag('js', new Date());\n\t\tgtag('config', 'UA-109770705-1');\n\t</script><script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script><script>\n  \t\t(adsbygoogle = window.adsbygoogle || []).push({\n    \tgoogle_ad_client: \"ca-pub-8472176423353956\",\n    \tenable_page_level_ads: true\n  \t\t});\n\t</script><link href=\"https://fonts.googleapis.com/css?family=Istok+Web:400,700\" rel=\"stylesheet\"><style>\nbody,html{font-family:'Istok Web','Verdana',sans-serif}a{color:black;text-decoration:none}.th{font-size:85%;box-sizing:border-box;word-wrap:break-word;display:table-cell;vertical-align:middle;width:25%;border:solid 1px #EFEFEF;page-break-before:auto;page-break-after:auto;page-break-inside:avoid}.date{width:7%}.city{width:15%}a:hover{color:#222;font-weight:700;letter-spacing:-.5px}.head{width:100%;text-align:center}.container{width:100%;max-width:980px;margin:auto;text-align:center;display:table}.container table,tr,td,th{text-align:left;border:solid 1px}@media screen and (min-width:1280px){.th{font-size:100%}.date{width:8%}}@media screen and (max-width:745px){.th{font-size:75%;width:25%}.city{width:22%}.date{width:16%}}\n\t</style></head><body>");
 
   component_globals_tag({}, out);
 
@@ -38,7 +38,7 @@ function render(input, out, __component, component, state) {
     marko_forEachWithStatusVar(event.Artists, function(Artist, __loop) {
       out.w("<span>" +
         marko_escapeXml(Artist.Name) +
-        "&nbsp;</span>");
+        "</span>");
 
       if (!__loop.isLast()) {
         out.w(" and ");
@@ -62,7 +62,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "32");
+  await_reorderer_tag({}, out, __component, "34");
 
   out.w("</body></html>");
 }

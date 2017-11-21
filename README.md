@@ -1,2 +1,11 @@
 # New-York-Concerts
-A bare bones list of upcoming NYC concerts via JamBase
+
+A simple webserver that generates a bare bones list of upcoming concerts via JamBase
+
+See it in action at
+	http://concertlist.nyc
+
+Requires REDIS for caching results, if no Redis server is configured results will be stored in memory only.
+
+Set API key and Redis server in config.js
+
