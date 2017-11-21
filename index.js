@@ -100,7 +100,7 @@ function getData(page) {
 var ontime = require("ontime");
 ontime(
     {
-        cycle: "00:00:00, 06:00:00, 12:00:00, 18:00:00"
+        cycle: ["00:00:00", "06:00:00", "12:00:00", "18:00:00"]
     },
     function(ot) {
         console.log("Updating From API");
