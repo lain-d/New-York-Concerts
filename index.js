@@ -100,10 +100,10 @@ function getData(page) {
 var ontime = require("ontime");
 ontime(
     {
-        cycle: "10"
+        cycle: "00:00:00, 06:00:00, 12:00:00, 18:00:00"
     },
     function(ot) {
-        console.log("Daily Update From API");
+        console.log("Updating From API");
         getData(p);
         ot.done();
         return;
