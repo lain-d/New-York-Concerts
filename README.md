@@ -7,5 +7,5 @@ See it in action at
 
 Requires REDIS for caching results, if no Redis server is configured results will be stored in memory only.
 
-Set API key and Redis server in config.js
+Set API key and Redis server as Config Variables JB_APIKEY and REDIS_URL or manually in config.js, other config settings can be modified as well.
 

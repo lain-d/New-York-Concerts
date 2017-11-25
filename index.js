@@ -69,6 +69,7 @@ function getData(page) {
                     }
                 } catch (e) {
                     console.log("API Did not give results, probably hit API Limit :(")
+                    console.log(body);
                     p = 50;
                     var result = {};
                     if (data.length < 1) {
