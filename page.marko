@@ -40,7 +40,7 @@ body,html{font-family:'Istok Web','Verdana',sans-serif}a{color:black;text-decora
             <div class="th">Venue</div>
             <div class="th city">City</div>
         </div>
-        <div style="width:100%; overflow:auto; display: table;" for(event in input.events)>
+        <div class="listing" style="width:100%; overflow:auto; display: table;" for(event in input.events)>
             <div class="th date dates">${new Date(event.Date).toString("ddd MMM d")}</div>
             <div class="th artists"><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
             <div class="th venue"><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
