@@ -109,6 +109,15 @@ ontime(
         return;
     }
 );
+
+app.get("/update", function(req, res) {
+	getData(p);
+	console.log("manual Update in progress...");
+    res.marko(template, {
+        events: data
+    });
+});
+
 app.get("/", function(req, res) {
     res.marko(template, {
         events: data
