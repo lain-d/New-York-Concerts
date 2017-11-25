@@ -41,10 +41,10 @@ body,html{font-family:'Istok Web','Verdana',sans-serif}a{color:black;text-decora
             <div class="th city">City</div>
         </div>
         <div style="width:100%; overflow:auto; display: table;" for(event in input.events)>
-            <div class="th date">${new Date(event.Date).toString("ddd MMM d")}</div>
-            <div class="th"><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
-            <div class="th"><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
-            <div class="th city"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
+            <div class="th date dates">${new Date(event.Date).toString("ddd MMM d")}</div>
+            <div class="th artists"><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
+            <div class="th venue"><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
+            <div class="th city cities"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
         </div>
         <h4 style="font-size: 50%; padding-top:10px">powered by <b><a style="text-weight:700" href="http://www.JamBase.com">JamBase™</a></b></h4>
     </div>
