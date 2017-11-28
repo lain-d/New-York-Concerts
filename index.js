@@ -3,7 +3,7 @@ var express = require("express");
 var favicon = require("serve-favicon");
 var path = require("path");
 var markoExpress = require("marko/express");
-var template = require("./page");
+var template = require("./views/page");
 require("datejs");
 var http = require("http");
 var app = express();
