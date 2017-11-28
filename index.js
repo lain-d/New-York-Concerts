@@ -117,7 +117,8 @@ ontime(
 
 app.get("/", function(req, res) {
   res.marko(template, {
-    events: data
+    events: data,
+    city: config.cityName
   });
 });
 app.listen(port);

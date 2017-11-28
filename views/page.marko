@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Showlist NYC</title>
-        <meta name="description" content="A LoFi list of upcoming NYC shws, powered by JamBase">
+        <title>Showlist ${input.city}</title>
+        <meta name="description" content="A LoFi list of upcoming "+input.city+" shows, powered by JamBase">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109770705-1"></script>
@@ -31,8 +31,8 @@ body,html{font-family:'Nunito','Verdana',sans-serif}a{color:black;text-decoratio
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
     <div class="head">
-        <h1><span style="font-weight:900; letter-spacing:-2.5px">NYC</span> Show List</h1>
-        <p style="font-size:80%; margin-top:-15px">Upcoming shows in the greater NYC area.<br>Updated every day at noon<br>Click Artists' name for tickets<br></p>
+        <h1><span style="font-weight:900; letter-spacing:-2.5px">${input.city}</span> Show List</h1>
+        <p style="font-size:80%; margin-top:-15px">Upcoming shows in the greater ${input.city} area.<br>Updated every day at noon<br>Click Artists' name for tickets<br></p>
     </div>
     <div class="container">
         <div style="width:100%; overflow:auto; display:table">
