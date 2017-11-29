@@ -1,0 +1,16 @@
+class {
+    onCreate(){
+        console.log(`Hi!`);
+        this.state = {count:0, events: []}
+    }
+    test(){
+    	this.state.count++;
+    }
+}
+<button on-click=('test')>hi ${state.count}</button>
+<div.listing style="width:100%; overflow:auto; display: table;" for(event in input.events)>
+            <div.th.date.dates>${new Date(event.Date).toString("ddd MMM d")}</div>
+            <div.th.artists><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
+            <div.th.venue><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
+            <div.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
+</div>

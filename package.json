@@ -2,10 +2,10 @@
   "name": "nycconcerts",
   "version": "1.0.0",
   "description": "Bare Bones List of NYC concerts",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,12 +21,16 @@
   },
   "homepage": "https://github.com/dan2600/New-York-Concerts#readme",
   "dependencies": {
+    "browser-refresh": "^1.7.2",
+    "browser-refresh-taglib": "^1.1.0",
     "compression": "^1.7.1",
     "datejs": "^1.0.0-rc3",
     "express": "^4.16.2",
     "http": "0.0.0",
     "https": "^1.0.0",
-    "marko": "^4.5.6",
+    "lasso": "^3.0.0",
+    "lasso-marko": "^2.3.1",
+    "marko": "^4.6.0",
     "ontime": "0.0.3",
     "redis": "^2.8.0",
     "serve-favicon": "^2.4.5"
