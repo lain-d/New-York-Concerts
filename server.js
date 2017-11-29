@@ -78,7 +78,7 @@ if (config.redisURL) {
   console.log("Server Starting Getting Cache From Redis");
   client.get("concertCache", function(err, reply) {
     data = JSON.parse(reply);
-    client.end();
+    client.quit();
   });
 } else {
   console.log("no Redis attempting to get data from API");
@@ -134,7 +134,7 @@ function getData(page) {
           p = 0;
           if (redis === true) {
               var client2 = require("redis").createClient(config.redisURL);
-            client2.set("concertCache", JSON.stringify(data), function(){client2.end()});
+            client2.set("concertCache", JSON.stringify(data), function(){client2.quit();});
           }
         }
       });
