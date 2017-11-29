@@ -29,46 +29,6 @@ const ddd = {
   Artists: [{ Id: 69, Name: "Jay" }],
   TicketUrl: "#"
 };
-const ddd2 = {
-  Id: 3064646,
-  Date: Date.today().add(1).days(),
-  Venue: {
-    Id: 151240,
-    Name: "Aest's House",
-    Address: "API Load Error",
-    City: "New York",
-    State: "New York",
-    StateCode: "NY",
-    Country: "US",
-    CountryCode: "US",
-    ZipCode: "10573",
-    Url: "#",
-    Latitude: 41.001397,
-    Longitude: -73.6654978
-  },
-  Artists: [{ Id: 69, Name: "Xay" }],
-  TicketUrl: "#"
-};
-const ddd3 = {
-  Id: 3064646,
-  Date: Date.today().add(3).days(),
-  Venue: {
-    Id: 151240,
-    Name: "Txest's House",
-    Address: "API Load Error",
-    City: "New York",
-    State: "New York",
-    StateCode: "NY",
-    Country: "US",
-    CountryCode: "US",
-    ZipCode: "10573",
-    Url: "#",
-    Latitude: 41.001397,
-    Longitude: -73.6654978
-  },
-  Artists: [{ Id: 69, Name: "Bay" }],
-  TicketUrl: "#"
-};
 var p = 0;
 var redis = true;
 var data = [];
@@ -118,7 +78,7 @@ function getData(page) {
           var result = {};
           if (data.length < 1) {
             console.log("I've got no results, Filling Dummy Data for Testing");
-            result.Events = [ddd, ddd2, ddd3, ddd2, ddd];
+            result.Events = [ddd, ddd];
           } else {
             console.log("Displaying results for " + data.length + " events");
             result.Events = [];
@@ -170,6 +130,12 @@ app.use(require('lasso/middleware').serveStatic());
 
 
 app.get("/", function(req, res) {
+
+if (req.url.indexOf("/static/") === 0 ) {
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    res.setHeader("Expires", new Date(Date.now() + 86400).toUTCString());
+}
+
   res.marko(indexTemplate, {
     events: data,
     city: config.cityName
