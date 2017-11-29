@@ -3,11 +3,9 @@ require("marko/node-require").install();
 require('marko/express');
 var express = require("express");
 var indexTemplate = require("./index.marko");
-
 const config = require("./config").config;
 var favicon = require("serve-favicon");
 var path = require("path");
-
 var http = require("http");
 var app = express();
 var port = process.env.PORT || 8080;
@@ -16,7 +14,7 @@ const ddd = {
   Date: Date.today(),
   Venue: {
     Id: 151240,
-    Name: "Jay's House",
+    Name: "Test's House",
     Address: "API Load Error",
     City: "New York",
     State: "New York",
@@ -29,6 +27,46 @@ const ddd = {
     Longitude: -73.6654978
   },
   Artists: [{ Id: 69, Name: "Jay" }],
+  TicketUrl: "#"
+};
+const ddd2 = {
+  Id: 3064646,
+  Date: Date.today().add(1).days(),
+  Venue: {
+    Id: 151240,
+    Name: "Aest's House",
+    Address: "API Load Error",
+    City: "New York",
+    State: "New York",
+    StateCode: "NY",
+    Country: "US",
+    CountryCode: "US",
+    ZipCode: "10573",
+    Url: "#",
+    Latitude: 41.001397,
+    Longitude: -73.6654978
+  },
+  Artists: [{ Id: 69, Name: "Xay" }],
+  TicketUrl: "#"
+};
+const ddd3 = {
+  Id: 3064646,
+  Date: Date.today().add(3).days(),
+  Venue: {
+    Id: 151240,
+    Name: "Txest's House",
+    Address: "API Load Error",
+    City: "New York",
+    State: "New York",
+    StateCode: "NY",
+    Country: "US",
+    CountryCode: "US",
+    ZipCode: "10573",
+    Url: "#",
+    Latitude: 41.001397,
+    Longitude: -73.6654978
+  },
+  Artists: [{ Id: 69, Name: "Bay" }],
   TicketUrl: "#"
 };
 var p = 0;
@@ -48,8 +86,6 @@ if (config.redisURL) {
 }
 app.use(compression());
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
-
-
 function getData(page) {
   console.log("Getting Concert Info for page " + page);
   var api =
@@ -81,7 +117,7 @@ function getData(page) {
           var result = {};
           if (data.length < 1) {
             console.log("I've got no results, Filling Dummy Data for Testing");
-            result.Events = [ddd, ddd, ddd, ddd, ddd];
+            result.Events = [ddd, ddd2, ddd3, ddd2, ddd];
           } else {
             console.log("Displaying results for " + data.length + " events");
             result.Events = [];
@@ -117,10 +153,7 @@ ontime(
     return;
   }
 );
-
-
 var isProduction = process.env.NODE_ENV === 'production';
-
 // Configure lasso to control how JS/CSS/etc. is delivered to the browser
 require('lasso').configure({
     plugins: [

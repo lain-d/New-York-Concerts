@@ -1,16 +1,48 @@
 class {
-    onCreate(){
-        console.log(`Hi!`);
-        this.state = {count:0, events: []}
+  onCreate() {
+    this.state = {
+      sortStyle: "date"
     }
-    test(){
-    	this.state.count++;
-    }
+  }
+    reSort(sort) {
+    this.state.sortStyle = sort;
+  }
 }
-<button on-click=('test')>hi ${state.count}</button>
-<div.listing style="width:100%; overflow:auto; display: table;" for(event in input.events)>
-            <div.th.date.dates>${new Date(event.Date).toString("ddd MMM d")}</div>
+<div style="width:100%; overflow:auto; display:table">
+<div.th.thh.date on-click('reSort', 'date')>Date</div>
+<div.th.thh.arts on-click('reSort', 'artist')>Artists</div>
+<div.th.thh.venues on-click('reSort', 'venue')>Venue</div>
+<div.th.thh.city on-click('reSort', 'city')>City</div>
+</div>
+<if(state.sortStyle === "date")>
+<div.listing style="width:100%; overflow:auto; display: table;" for(event in input.events.sort(function(a,b) {return (new Date(a.Date) > new Date(b.Date)) ? 1 : ((new Date(b.Date) > new Date(a.Date)) ? -1 : 0);} ))>
+            <div.th.date.dates>${new Date(event.Date).toDateString().split("2017")[0]}</div>
             <div.th.artists><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
             <div.th.venue><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
             <div.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
 </div>
+</if>
+<if(state.sortStyle === "venue")>
+<div.listing style="width:100%; overflow:auto; display: table;" for(event in input.events.sort(function(a,b) {return (a.Venue.Name > b.Venue.Name) ? 1 : ((b.Venue.Name > a.Venue.Name) ? -1 : 0);} ))>
+            <div.th.date.dates>${new Date(event.Date).toDateString().split("2017")[0]}</div>
+            <div.th.artists><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
+            <div.th.venue><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
+            <div.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
+</div>
+</if>
+<if(state.sortStyle === "artist")>
+<div.listing style="width:100%; overflow:auto; display: table;" for(event in input.events.sort(function(a,b) {return (a.Artists[0].Name > b.Artists[0].Name) ? 1 : ((b.Artists[0].Name > a.Artists[0].Name) ? -1 : 0);} ))>
+            <div.th.date.dates>${new Date(event.Date).toDateString().split("2017")[0]}</div>
+            <div.th.artists><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
+            <div.th.venue><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
+            <div.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
+</div>
+</if>
+<if(state.sortStyle === "city")>
+<div.listing style="width:100%; overflow:auto; display: table;" for(event in input.events.sort(function(a,b) {return (a.Venue.City > b.Venue.City) ? 1 : ((b.Venue.City > a.Venue.City) ? -1 : 0);} ))>
+            <div.th.date.dates>${new Date(event.Date).toDateString().split("2017")[0]}</div>
+            <div.th.artists><a href="${event.TicketUrl}"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
+            <div.th.venue><a href="${event.Venue.Url}">${event.Venue.Name}</a></div>
+            <div.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
+</div>
+</if>
