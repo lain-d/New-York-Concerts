@@ -74,8 +74,8 @@ var redis = true;
 var data = [];
 var compression = require("compression");
 if (config.redisURL) {
-  var client = require("redis").(config.redisURL);
-  console.log("Server Starting GcreateClientetting Cache From Redis");
+  var client = require("redis").createClient(config.redisURL);
+  console.log("Server Starting Getting Cache From Redis");
   client.get("concertCache", function(err, reply) {
     data = JSON.parse(reply);
     client.end();
@@ -133,7 +133,7 @@ function getData(page) {
         } else {
           p = 0;
           if (redis === true) {
-            var client2 = require("redis").(config.redisURL);
+              var client2 = require("redis").createClient(config.redisURL);
             client2.set("concertCache", JSON.stringify(data), function(){client2.end()});
           }
         }
