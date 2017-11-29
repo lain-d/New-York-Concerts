@@ -45,7 +45,6 @@ if (config.redisURL) {
   redis = false;
   getData(p);
 }
-app.use(compression());
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 function getData(page) {
   console.log("Getting Concert Info for page " + page);
@@ -127,13 +126,14 @@ require('lasso').configure({
     fingerprintsEnabled: isProduction, // Only add fingerprints to URLs in production
 });
 app.use(require('lasso/middleware').serveStatic());
+app.use(compression());
 
 
 app.get("/*", function(req, res, next){
-  if (req.url.indexOf("/static/") === 0 ) {
+  
     res.setHeader("Cache-Control", "public, max-age=86400");
     res.setHeader("Expires", new Date(Date.now() + 86400).toUTCString());
-}
+
 next();
 })
 
