@@ -129,13 +129,15 @@ require('lasso').configure({
 app.use(require('lasso/middleware').serveStatic());
 
 
-app.get("/", function(req, res) {
-
-if (req.url.indexOf("/static/") === 0 ) {
+app.get("/*", function(req, res, next){
+  if (req.url.indexOf("/static/") === 0 ) {
     res.setHeader("Cache-Control", "public, max-age=86400");
     res.setHeader("Expires", new Date(Date.now() + 86400).toUTCString());
 }
+next();
+})
 
+app.get("/", function(req, res) {
   res.marko(indexTemplate, {
     events: data,
     city: config.cityName
