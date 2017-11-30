@@ -87,7 +87,7 @@ function getData(page) {
           data.push(result.Events[i]);
         }
         p++;
-        if (p <= 49) {
+        if (p <= 43) {
           getData(p);
         } else {
           p = 0;
