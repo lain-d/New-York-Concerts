@@ -57,5 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
-page.marko.js
+page.marko.js*
+static
+
 views/page.marko.js
+components/app-showtable/index.marko.js

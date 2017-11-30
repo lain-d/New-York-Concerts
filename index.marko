@@ -89,7 +89,7 @@ th {
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Showlist ${input.city}</title>
+        <title>${input.city} Showlist</title>
         <meta name="description" content="A LoFi list of upcoming "+input.city+" shows, powered by JamBase">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,900" rel="stylesheet"> 
@@ -98,10 +98,19 @@ th {
 <body>
     <div class="head">
         <h1><span style="font-weight:900; letter-spacing:-2.5px">${input.city}</span> Show List</h1>
-        <p style="font-size:80%; margin-top:-15px">Upcoming shows in the greater ${input.city} area.<br>Updated every day at noon<br>Click Artists' name for tickets<br></p>
+        <p style="font-size:80%; margin-top:-15px">Upcoming shows in the greater ${input.city} area.<br>Updated every day at noon<br>Click Artists' names for tickets<br></p>
     </div>
     <div class="container">
-        <app-showtable events=input.events />
+    $ var loadPromise = new Promise((resolve, reject) => {
+ 
+        resolve({
+            data: input.events
+        });
+
+});
+    <await(rp from loadPromise)>
+        <app-showtable events=rp.data />
+    </await>
         <h4 style="font-size: 65%; padding-top:10px">powered by <b><a style="text-weight:700" href="http://www.JamBase.com">JamBase™</a></b></h4>
     </div>
         <lasso-body/>
