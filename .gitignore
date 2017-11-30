@@ -59,6 +59,6 @@ typings/
 
 page.marko.js*
 static
-
 views/page.marko.js
 components/app-showtable/index.marko.js
+.cache

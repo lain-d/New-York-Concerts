@@ -37,7 +37,7 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.city) +
     " Showlist</title><meta name=\"description\" content=\"A LoFi list of upcoming " +
     marko_escapeXmlAttr(input.city) +
-    " shows, powered by JamBase\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link href=\"https://fonts.googleapis.com/css?family=Nunito:400,700,900\" rel=\"stylesheet\"> ");
+    " shows, powered by JamBase\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\"><link href=\"https://fonts.googleapis.com/css?family=Nunito:400,700,900\" rel=\"stylesheet\"> ");
 
   lasso_head_tag({}, out, __component, "8");
 
