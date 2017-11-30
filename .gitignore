@@ -58,6 +58,7 @@ typings/
 .env
 
 page.marko.js
+package-lock.json
 static
 views/page.marko.js
 components/app-showtable/index.marko.js
