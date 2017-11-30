@@ -15,31 +15,39 @@ class {
     this.state.sortStyle = sort;
   }
 }
-$ var events = [];
+style{
+  .thh{
+  -webkit-user-select: none; /* Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none;
+  }
+}
 <div style="width:100%; overflow:auto; display:table">
 <div.th.thh.date on-click('reSort', 'date')>Date</div>
 <div.th.thh.arts on-click('reSort', 'artist')>Artists</div>
 <div.th.thh.venues on-click('reSort', 'venue')>Venue</div>
 <div.th.thh.city on-click('reSort', 'city')>City</div>
 </div>
+$ var events = input.events;
 <if(state.sortStyle === "date")>
-$ events = input.events.sort(function(a,b) {return (new Date(a.Date) > new Date(b.Date)) ? 1 : ((new Date(b.Date) > new Date(a.Date)) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (new Date(a.Date) > new Date(b.Date)) ? 1 : ((new Date(b.Date) > new Date(a.Date)) ? -1 : 0);} );
 </if>
 <else-if(state.sortStyle === "venue")>
-$ events = input.events.sort(function(a,b) {return (a.Venue.Name > b.Venue.Name) ? 1 : ((b.Venue.Name > a.Venue.Name) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (a.Venue.Name > b.Venue.Name) ? 1 : ((b.Venue.Name > a.Venue.Name) ? -1 : 0);} );
 </else-if>
 <else-if(state.sortStyle === "artist")>
-$ events = input.events.sort(function(a,b) {return (a.Artists[0].Name > b.Artists[0].Name) ? 1 : ((b.Artists[0].Name > a.Artists[0].Name) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (a.Artists[0].Name > b.Artists[0].Name) ? 1 : ((b.Artists[0].Name > a.Artists[0].Name) ? -1 : 0);} );
 </else-if>
 <else-if(state.sortStyle === "city")>
-$ events = input.events.sort(function(a,b) {return (a.Venue.City > b.Venue.City) ? 1 : ((b.Venue.City > a.Venue.City) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (a.Venue.City > b.Venue.City) ? 1 : ((b.Venue.City > a.Venue.City) ? -1 : 0);} );
 </else-if>
 <if(state.reverse === true)>
 $ events = events.reverse();
 </if>
 <div.listing style="width:100%; overflow:auto; display: table;" for(event in events)>
             <div.th.date.dates>${new Date(event.Date).toDateString().split(new Date().getFullYear())[0]}</div>
-            <div.th.artists><a href="${event.TicketUrl}" target="_blank"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
-            <div.th.venue><a href="${event.Venue.Url}" target="_blank">${event.Venue.Name}</a></div>
-            <div.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}" target="_blank">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
+            <a href="${event.TicketUrl}" target="_blank"><div.th.artists><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></div></a>
+            <a href="${event.Venue.Url}" target="_blank"><div.th.venue>${event.Venue.Name}</div></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}" target="_blank"><div.th.city.cities>${event.Venue.City}, ${event.Venue.StateCode}</div></a>
 </div>

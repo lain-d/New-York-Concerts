@@ -125,8 +125,9 @@ require('lasso').configure({
     minify: isProduction, // Only minify JS and CSS code in production
     fingerprintsEnabled: isProduction, // Only add fingerprints to URLs in production
 });
-app.use(require('lasso/middleware').serveStatic());
 app.use(compression());
+app.use(require('lasso/middleware').serveStatic());
+
 
 
 app.get("/*", function(req, res, next){
