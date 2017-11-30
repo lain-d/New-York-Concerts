@@ -22,13 +22,17 @@ style {
 -ms-user-select: none; /* IE10+/Edge */
 user-select: none;
   }
+  ul{
+  margin: 0;
+  padding: 0;
+  }
 }
-<div style="width:100%; overflow:auto; display:table">
-<div.th.thh.date on-click('reSort', 'date')>Date</div>
-<div.th.thh.arts on-click('reSort', 'artist')>Artists</div>
-<div.th.thh.venues on-click('reSort', 'venue')>Venue</div>
-<div.th.thh.city on-click('reSort', 'city')>City</div>
-</div>
+<ul style="width:100%; overflow:auto; display:table">
+<span.th.thh.date on-click('reSort', 'date')>Date</span>
+<span.th.thh.arts on-click('reSort', 'artist')>Artists</span>
+<span.th.thh.venues on-click('reSort', 'venue')>Venue</span>
+<span.th.thh.city on-click('reSort', 'city')>City</span>
+</ul>
 $ var events = input.events;
 <if(state.sortStyle === "date")>
 $ events = events.sort(function(a,b) {return (new Date(a.Date) > new Date(b.Date)) ? 1 : ((new Date(b.Date) > new Date(a.Date)) ? -1 : 0);} );
@@ -45,9 +49,9 @@ $ events = events.sort(function(a,b) {return (a.Venue.City > b.Venue.City) ? 1 :
 <if(state.reverse === true)>
 $ events = events.reverse();
 </if>
-<div.listing style="width:100%; overflow:auto; display: table;" for(event in events)>
-            <div.th.date.dates>${new Date(event.Date).toDateString().split(new Date().getFullYear())[0]}</div>
-            <div.th.artists><a href="${event.TicketUrl}" target="_blank"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></div>
-            <div.th.venue><a href="${event.Venue.Url}" target="_blank">${event.Venue.Name}</a></div>
-            <div.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}" target="_blank">${event.Venue.City}, ${event.Venue.StateCode}</a></div>
-</div>
+<ul.listing style="width:100%; overflow:auto; display: table;" for(event in events)>
+            <span.th.date.dates>${new Date(event.Date).toDateString().split(new Date().getFullYear())[0]}</span>
+            <span.th.artists><a href="${event.TicketUrl}" target="_blank"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a></span>
+            <span.th.venue><a href="${event.Venue.Url}" target="_blank">${event.Venue.Name}</a></span>
+            <span.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}" target="_blank">${event.Venue.City}, ${event.Venue.StateCode}</a></span>
+</ul>
