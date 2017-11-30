@@ -129,14 +129,13 @@ app.use(compression());
 //app.use(require('lasso/middleware').serveStatic());
 
 app.get('/static/*', function (req, res, next) {
-    console.log("this should cache");
+
     res.setHeader("Cache-Control", "public, max-age=2592000");
     res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
     app.use(require('lasso/middleware').serveStatic());
     next();
 });
 app.get("/", function(req, res) {
-  console.log("serving page");
       res.setHeader("Cache-Control", "public, max-age=86400");
     res.setHeader("Expires", Date.today().set({hour:12, minute:00, second:00}).toUTCString());
   res.marko(indexTemplate, {
