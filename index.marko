@@ -39,7 +39,7 @@
     $ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-    <span style="font-size:75%">${numberWithCommas(input.events.length)} Events</span><br>
+    <span style="font-size:75%">Listing ${numberWithCommas(input.events.length)} Events</span><br>
     $ var loadPromise = new Promise((resolve, reject) => {
  
         resolve({
