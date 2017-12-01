@@ -21,6 +21,7 @@ if (config.redisURL) {
   console.log('Server Starting Getting Cache From Redis');
   client.get('concertCache', function(err, reply) {
     data = JSON.parse(reply);
+    console.log("Data Loaded from Cache, Closing Redis");
     client.quit();
   });
 } else {
