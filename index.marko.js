@@ -20,6 +20,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     app_showtable_template = marko_loadTemplate(require.resolve("./components/app-showtable")),
     app_showtable_tag = marko_loadTag(app_showtable_template),
     await_tag = marko_loadTag(require("marko/src/taglibs/async/await-tag")),
+    lasso_slot_tag = marko_loadTag(require("lasso/taglib/slot-tag")),
     lasso_body_tag = marko_loadTag(require("lasso/taglib/body-tag")),
     browser_refresh_tag = marko_loadTag(require("browser-refresh-taglib/refresh-tag")),
     init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
@@ -33,13 +34,13 @@ function render(input, out, __component, component, state) {
       filename: __filename
     }, out);
 
-  out.w("<!doctype html><html class=\"no-js\" lang=\"\"><head><meta charset=\"utf-8\"><meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\"><title>" +
+  out.w("<!doctype html><html class=\"no-js\" lang=\"\"><head><meta charset=\"utf-8\"><meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\"><script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-109770705-2\"></script><script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'UA-109770705-2');\n</script><title>" +
     marko_escapeXml(input.city) +
     " Showlist</title><meta name=\"description\" content=\"A LoFi list of upcoming " +
     marko_escapeXmlAttr(input.city) +
-    " shows, powered by JamBase\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\"><style>\n            body,html{font-family:'Nunito','Proxima Nova Soft','Helvetica Neue',sans-serif}a{color:black;text-decoration:none}.th{font-size:85%;box-sizing:border-box;word-wrap:break-word;display:table-cell;vertical-align:middle;width:25%;border:solid 1px #EFEFEF;page-break-before:auto;page-break-after:auto;page-break-inside:avoid}.thh{cursor:pointer}.thh:hover{font-weight:900}.date{width:7%}.city{width:15%}a:hover{color:#222;font-weight:700;letter-spacing:-.5px}.head{width:100%;text-align:center}.container{width:100%;max-width:980px;margin:auto;text-align:center;display:table}.container table,tr,td,th{text-align:left;border:solid 1px}@media screen and (min-width:1280px){.th{font-size:100%}.date{width:8%}}@media screen and (max-width:745px){.th{font-size:75%;width:25%}.city{width:22%}.date{width:16%}}\n            .thh{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}ul{margin:0;padding:0}\n        </style>");
+    " shows, powered by JamBase\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\"><style>\n            body,html{font-family:'Nunito','Proxima Nova Soft','Helvetica Neue',sans-serif}a{color:black;text-decoration:none}.th{font-size:85%;box-sizing:border-box;word-wrap:break-word;display:table-cell;vertical-align:middle;width:25%;border:solid 1px #EFEFEF;page-break-before:auto;page-break-after:auto;page-break-inside:avoid}.thh{cursor:pointer}.thh:hover{font-weight:900}.date{width:7%}.city{width:15%}a:hover{color:#222;font-weight:700;letter-spacing:-.5px}.head{width:100%;text-align:center}.container{width:100%;max-width:980px;margin:auto;text-align:center;display:table}.container table,tr,td,th{text-align:left;border:solid 1px}@media screen and (min-width:1280px){.th{font-size:100%}.date{width:8%}}@media screen and (max-width:745px){.th{font-size:75%;width:25%}.city{width:22%}.date{width:16%}}\n            .thh{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}ul{margin:0;padding:0}\n        </style><script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script><script>\n  (adsbygoogle = window.adsbygoogle || []).push({\n    google_ad_client: \"ca-pub-8472176423353956\",\n    enable_page_level_ads: true\n  });\n</script>");
 
-  lasso_head_tag({}, out, __component, "8");
+  lasso_head_tag({}, out, __component, "12");
 
   out.w("</head><body>");
 
@@ -73,19 +74,30 @@ function render(input, out, __component, component, state) {
       renderBody: function renderBody(out, rp) {
         app_showtable_tag({
             events: rp.data
-          }, out, __component, "21");
+          }, out, __component, "25");
       }
-    }, out, __component, "20");
+    }, out, __component, "24");
 
   out.w("<h4 style=\"font-size: 65%; padding-top:10px\">powered by <b><a style=\"text-weight:700\" href=\"http://www.JamBase.com\">JamBase™</a></b></h4></div><script src=\"https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js\"></script><script>\n WebFont.load({\n    google: {\n      families: ['Nunito:400,700,900']\n    }\n  });\n</script>");
 
-  lasso_body_tag({}, out, __component, "27");
+  lasso_slot_tag({
+      name: "body",
+      inlineScriptAttrs: {
+          async: true
+        }
+    }, out, __component, "31");
 
-  browser_refresh_tag({}, out, __component, "28");
+  lasso_body_tag({
+      externalScriptAttrs: {
+          async: true
+        }
+    }, out, __component, "32");
+
+  browser_refresh_tag({}, out, __component, "33");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "29");
+  await_reorderer_tag({}, out, __component, "34");
 
   out.w("</body></html>");
 }
@@ -104,6 +116,7 @@ marko_template.meta = {
       "marko/src/components/taglib/component-globals-tag",
       "./components/app-showtable",
       "marko/src/taglibs/async/await-tag",
+      "lasso/taglib/slot-tag",
       "lasso/taglib/body-tag",
       "browser-refresh-taglib/refresh-tag",
       "marko/src/components/taglib/init-components-tag",
