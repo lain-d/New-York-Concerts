@@ -49,7 +49,9 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.city) +
     "</span> Show List</h1><p style=\"font-size:80%; margin-top:-15px\">Upcoming shows in the greater " +
     marko_escapeXml(input.city) +
-    " area.<br>Updated every day at noon<br>Click Artists' names for tickets<br></p></div><div class=\"container\">");
+    " area.<br>Updated every day at noon<br>Click Artists' names for tickets<br></p></div><div class=\"container\"><span style=\"font-size:75%\">" +
+    marko_escapeXml(input.events.length) +
+    " Events</span><br>");
 
   var loadPromise = new Promise((resolve, reject) => {
    
@@ -65,19 +67,19 @@ function render(input, out, __component, component, state) {
       renderBody: function renderBody(out, rp) {
         app_showtable_tag({
             events: rp.data
-          }, out, __component, "19");
+          }, out, __component, "21");
       }
-    }, out, __component, "18");
+    }, out, __component, "20");
 
   out.w("<h4 style=\"font-size: 65%; padding-top:10px\">powered by <b><a style=\"text-weight:700\" href=\"http://www.JamBase.com\">JamBase™</a></b></h4></div><script src=\"https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js\"></script><script>\n WebFont.load({\n    google: {\n      families: ['Nunito:400,700,900']\n    }\n  });\n</script>");
 
-  lasso_body_tag({}, out, __component, "25");
+  lasso_body_tag({}, out, __component, "27");
 
-  browser_refresh_tag({}, out, __component, "26");
+  browser_refresh_tag({}, out, __component, "28");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "27");
+  await_reorderer_tag({}, out, __component, "29");
 
   out.w("</body></html>");
 }
