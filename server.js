@@ -10,7 +10,10 @@ var http = require('http');
 var app = express();
 var port = process.env.PORT || 8080;
 var redis = true;
-var data = [];
+
+//Evil I know :-/
+global.data = [];
+
 var compression = require('compression');
 var getData = require('./lib/getData').getData;
 if (config.redisURL) {
@@ -23,7 +26,7 @@ if (config.redisURL) {
 } else {
   console.log('no Redis attempting to get data from API');
   redis = false;
-  getData(0, data);
+  getData(0);
 }
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
@@ -34,7 +37,7 @@ ontime(
   },
   function(ot) {
     console.log('Updating From API');
-    getData(0, data);
+    getData(0);
     ot.done();
     return;
   }
