@@ -52,7 +52,7 @@ $ events = events.reverse();
             <span.th.venue><a href="${event.Venue.Url}" target="_blank">${event.Venue.Name}</a></span>
              </if>
              <else>
-               <span.th.venue><a href="#" target="_blank">${event.Venue.Name}</a></span>
+               <span.th.venue><a href="#">${event.Venue.Name}</a></span>
              </else>
             <span.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}" target="_blank">${event.Venue.City}, ${event.Venue.StateCode}</a></span>
 </ul>
