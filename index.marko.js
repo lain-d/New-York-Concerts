@@ -49,8 +49,14 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.city) +
     "</span> Show List</h1><p style=\"font-size:80%; margin-top:-15px\">Upcoming shows in the greater " +
     marko_escapeXml(input.city) +
-    " area.<br>Updated every day at noon<br>Click Artists' names for tickets<br></p></div><div class=\"container\"><span style=\"font-size:75%\">" +
-    marko_escapeXml(input.events.length) +
+    " area.<br>Updated every day at noon<br>Click Artists' names for tickets<br></p></div><div class=\"container\">");
+
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  out.w("<span style=\"font-size:75%\">" +
+    marko_escapeXml(numberWithCommas(input.events.length)) +
     " Events</span><br>");
 
   var loadPromise = new Promise((resolve, reject) => {
