@@ -52,7 +52,7 @@ $ events = events.reverse();
 <ul.listing style="width:100%; overflow:auto; display: table;" for(event in events | status-var=loop)>
             <span.th.date.dates>${new Date(event.Date).toDateString().split(new Date().getFullYear())[0]}</span>
             <span.th.artists>
-            ${loop.getIndex()}
+            
             <if(event.TicketUrl !== "")>
             <a href="#" on-click('openLink', loop.getIndex(), events)><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a>
             </if>
