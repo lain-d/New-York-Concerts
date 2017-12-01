@@ -1,7 +1,7 @@
 style {
     body,
 html {
-    font-family: 'Nunito', 'Verdana', sans-serif
+    font-family: 'Nunito', 'Proxima Nova Soft','Helvetica Neue',sans-serif
 }
 a {
     color: black;
@@ -92,7 +92,6 @@ th {
         <title>${input.city} Showlist</title>
         <meta name="description" content="A LoFi list of upcoming "+input.city+" shows, powered by JamBase">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,900" rel="stylesheet"> 
         <lasso-head/>
 </head>
 <body>
@@ -113,6 +112,22 @@ th {
     </await>
         <h4 style="font-size: 65%; padding-top:10px">powered by <b><a style="text-weight:700" href="http://www.JamBase.com">JamBase™</a></b></h4>
     </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script>
+ WebFont.load({
+    google: {
+      families: ['Nunito:400,700,900']
+    }
+  });
+</script>
+
+
+
+
+
+
         <lasso-body/>
      <browser-refresh/>
 </body>
