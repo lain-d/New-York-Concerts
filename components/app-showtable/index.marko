@@ -14,6 +14,18 @@ class {
         }
     this.state.sortStyle = sort;
   }
+  openMap(index, array){
+    window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(array[index].Venue.Name+" "+array[index].Venue.Address+" "+array[index].Venue.City+" "+array[index].Venue.State));
+  }
+  openSearch(index, array){
+    window.open("https://www.google.com/search?q="+encodeURIComponent(array[index].Artists[0].Name+" "+new Date(array[index].Date).toDateString()+" "+array[index].Venue.Name));
+  }
+  openLink(index, array){
+    window.open(array[index].TicketUrl);
+  }
+  openVenu(index, array){
+    window.open(array[index].Venue.Url);
+  }
 }
 <ul style="width:100%; overflow:auto; display:table">
 <span.th.thh.date on-click('reSort', 'date')>Date</span>
@@ -37,22 +49,22 @@ $ events = events.sort(function(a,b) {return (a.Venue.City > b.Venue.City) ? 1 :
 <if(state.reverse === true)>
 $ events = events.reverse();
 </if>
-<ul.listing style="width:100%; overflow:auto; display: table;" for(event in events)>
+<ul.listing style="width:100%; overflow:auto; display: table;" for(event in events | status-var=loop)>
             <span.th.date.dates>${new Date(event.Date).toDateString().split(new Date().getFullYear())[0]}</span>
             <span.th.artists>
+            ${loop.getIndex()}
             <if(event.TicketUrl !== "")>
-            <a href="${event.TicketUrl}" target="_blank"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a>
+            <a href="#" on-click('openLink', loop.getIndex(), events)><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a>
             </if>
             <else>
-            <a href="https://www.google.com/search?q=${encodeURIComponent(event.Artists[0].Name+" "+new Date(event.Date).toDateString()+" "+event.Venue.Name)}" target="_blank"><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a> 
+            <a href="#" on-click('openSearch', loop.getIndex(), events)><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a> 
             </else>
             </span>
             <if(event.Venue.Url !== "")>
-          
-            <span.th.venue><a href="${event.Venue.Url}" target="_blank">${event.Venue.Name}</a></span>
-             </if>
-             <else>
-               <span.th.venue><a href="#">${event.Venue.Name}</a></span>
-             </else>
-            <span.th.city.cities><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Venue.Name+" "+event.Venue.Address+" "+event.Venue.City+" "+event.Venue.State)}" target="_blank">${event.Venue.City}, ${event.Venue.StateCode}</a></span>
+            <span.th.venue><a href="#" on-click('openVenu', loop.getIndex(), events)>${event.Venue.Name}</a></span>
+            </if>
+            <else>
+            <span.th.venue><a href="#">${event.Venue.Name}</a></span>
+            </else>
+            <span.th.city.cities><a href="#" on-click('openMap', loop.getIndex(), events)>${event.Venue.City}, ${event.Venue.StateCode}</a></span>
 </ul>

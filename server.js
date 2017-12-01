@@ -61,6 +61,7 @@ require("lasso").configure({
   fingerprintsEnabled: isProduction
 });
 
+
 //Routes
 app.get("/static/*", function(req, res, next) {
   //lasso middleware doesn't put cache-control, route to force Cache Control Headers for static content, then send it to lasso middleware

@@ -56,7 +56,7 @@ function render(input, out, __component, component, state) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  out.w("<span style=\"font-size:75%\">" +
+  out.w("<span style=\"font-size:75%\">Listing " +
     marko_escapeXml(numberWithCommas(input.events.length)) +
     " Events</span><br>");
 
