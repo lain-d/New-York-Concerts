@@ -73,6 +73,27 @@ app.get("/static/*", function(req, res, next) {
   app.use(require("lasso/middleware").serveStatic());
   next();
 });
+
+app.get("/refresh", function(req, res){
+
+getData(0, data, function(thedata) {
+      console.log("Saving Show Data in Memory");
+      data = thedata;
+      	  res.setHeader("Cache-Control", "public, max-age=86400");
+  res.setHeader(
+    "Expires",
+    Date.today()
+      .set({ hour: 12, minute: 00, second: 00 })
+      .toUTCString()
+  );
+  res.marko(indexTemplate, {
+    events: data,
+    numevents: numberWithCommas(data.length),
+    city: config.cityName
+  });
+    });
+});
+
 app.get("/", function(req, res) {
   res.setHeader("Cache-Control", "public, max-age=86400");
   res.setHeader(
