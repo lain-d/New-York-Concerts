@@ -106,7 +106,7 @@ for(i=0;i<data.length;i++){
 	  {
 	  	delete data[i].Venue.Url
 	  }
-	  for(z=0;z<data[i].Artists.length,z++)
+	  for(z=0;z<data[i].Artists.length;z++)
 	  {
 	  	delete data[i].Artists[z].Id
 	  }
