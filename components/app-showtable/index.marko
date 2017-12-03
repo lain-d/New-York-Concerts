@@ -15,7 +15,7 @@ class {
     this.state.sortStyle = sort;
   }
   openMap(index, array){
-    window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(array[index].Venue.Name+" "+array[index].Venue.Address+" "+array[index].Venue.City+" "+array[index].Venue.State));
+    window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(array[index].Venue.Name+" "+array[index].Venue.Address+" "+array[index].Venue.City+" "+array[index].Venue.StateCode));
   }
   openSearch(index, array){
     window.open("https://www.google.com/search?q="+encodeURIComponent(array[index].Artists[0].Name+" "+new Date(array[index].Date).toDateString()+" "+array[index].Venue.Name));

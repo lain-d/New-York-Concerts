@@ -61,6 +61,9 @@ require("lasso").configure({
   fingerprintsEnabled: isProduction
 });
 
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 //Routes
 app.get("/static/*", function(req, res, next) {
@@ -80,6 +83,7 @@ app.get("/", function(req, res) {
   );
   res.marko(indexTemplate, {
     events: data,
+    numevents: numberWithCommas(data.length),
     city: config.cityName
   });
 });
