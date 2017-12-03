@@ -117,7 +117,17 @@ for(i=0;i<data.length;i++){
       	delete data[i].TicketUrl;
       }
       data[i].V=data[i].Venue;
+      data[i].TU=data[i].TicketUrl;
+      data[i].A=data[i].Artists;
+      data[i].V.SC=data[i].V.StateCode;
+      data[i].V.Ad=data[i].V.Address;
       delete data[i].Venue;
+      delete data[i].Artists;
+      delete data[i].V.StateCode;
+      delete data[i].V.Address;
+      delete data[i].TicketUrl;
+      delete data[i].V.ZipCode;
+
 }
 console.log("dataMinified");
 })

@@ -15,13 +15,13 @@ class {
     this.state.sortStyle = sort;
   }
   openMap(index, array){
-    window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(array[index].V.Name+" "+array[index].V.Address+" "+array[index].V.City+" "+array[index].V.StateCode));
+    window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(array[index].V.Name+" "+array[index].V.Ad+" "+array[index].V.City+" "+array[index].V.SC));
   }
   openSearch(index, array){
     window.open("https://www.google.com/search?q="+encodeURIComponent(array[index].Artists[0].Name+" "+new Date(array[index].Date).toDateString()+" "+array[index].V.Name));
   }
   openLink(index, array){
-    window.open(array[index].TicketUrl);
+    window.open(array[index].TU);
   }
   openVenu(index, array){
     window.open(array[index].V.Url);
@@ -41,7 +41,7 @@ $ events = events.sort(function(a,b) {return (new Date(a.Date) > new Date(b.Date
 $ events = events.sort(function(a,b) {return (a.V.Name > b.V.Name) ? 1 : ((b.V.Name > a.V.Name) ? -1 : 0);} );
 </else-if>
 <else-if(state.sortStyle === "artist")>
-$ events = events.sort(function(a,b) {return (a.Artists[0].Name > b.Artists[0].Name) ? 1 : ((b.Artists[0].Name > a.Artists[0].Name) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (a.A[0].Name > b.A[0].Name) ? 1 : ((b.A[0].Name > a.A[0].Name) ? -1 : 0);} );
 </else-if>
 <else-if(state.sortStyle === "city")>
 $ events = events.sort(function(a,b) {return (a.V.City > b.V.City) ? 1 : ((b.V.City > a.V.City) ? -1 : 0);} );
@@ -51,12 +51,12 @@ $ events = events.reverse();
 </if>
 <ul.listing style="width:100%; overflow:auto; display: table;" for(event in events | status-var=loop)>
             <span.th.date.dates>${new Date(event.Date).toDateString().split(new Date().getFullYear())[0]}</span>
-            <span.th.artists>
-            <if(event.TicketUrl !== "")>
-            <a href="#" on-click('openLink', loop.getIndex(), events)><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a>
+            <span.th.Artists>
+            <if(event.TU !== "")>
+            <a href="#" on-click('openLink', loop.getIndex(), events)><span for(Artist in event.A | separator=" and ")>${Artist.Name}</span></a>
             </if>
             <else>
-            <a href="#" on-click('openSearch', loop.getIndex(), events)><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a> 
+            <a href="#" on-click('openSearch', loop.getIndex(), events)><span for(Artist in event.A | separator=" and ")>${Artist.Name}</span></a> 
             </else>
             </span>
             <if(event.V.Url !== "")>
@@ -65,5 +65,5 @@ $ events = events.reverse();
             <else>
             <span.th.venue><a href="#">${event.V.Name}</a></span>
             </else>
-            <span.th.city.cities><a href="#" on-click('openMap', loop.getIndex(), events)>${event.V.City}, ${event.V.StateCode}</a></span>
+            <span.th.city.cities><a href="#" on-click('openMap', loop.getIndex(), events)>${event.V.City}, ${event.V.SC}</a></span>
 </ul>
