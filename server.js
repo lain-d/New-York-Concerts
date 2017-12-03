@@ -94,6 +94,8 @@ getData(0, data, function(thedata) {
     });
 });
 
+
+
 app.get("/cleantest", function(req, res){
 console.log("running data minify test");
 for(i=0;i<data.length;i++){
@@ -109,6 +111,8 @@ for(i=0;i<data.length;i++){
 	  for(z=0;z<data[i].Artists.length;z++)
 	  {
 	  	delete data[i].Artists[z].Id
+	  	data[i].Artists[z].N = data[i].Artists[z].Name;
+	  	delete data[i].Artists[z].Name;
 	  }
 	  delete data[i].Venue.Latitude;
       delete data[i].Venue.Longitude;
@@ -117,11 +121,17 @@ for(i=0;i<data.length;i++){
       	delete data[i].TicketUrl;
       }
       data[i].V=data[i].Venue;
+      data[i].D=data[i].Date;
       data[i].TU=data[i].TicketUrl;
       data[i].A=data[i].Artists;
       data[i].V.SC=data[i].V.StateCode;
       data[i].V.Ad=data[i].V.Address;
+      data[i].V.N=data[i].V.Name;
+      data[i].V.C=data[i].V.City;
       delete data[i].Venue;
+      delete data[i].Date;
+      delete data[i].V.City;
+      delete data[i].V.Name;
       delete data[i].Artists;
       delete data[i].V.StateCode;
       delete data[i].V.Address;

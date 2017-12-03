@@ -15,10 +15,10 @@ class {
     this.state.sortStyle = sort;
   }
   openMap(index, array){
-    window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(array[index].V.Name+" "+array[index].V.Ad+" "+array[index].V.City+" "+array[index].V.SC));
+    window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(array[index].V.N+" "+array[index].V.Ad+" "+array[index].V.C+" "+array[index].V.SC));
   }
   openSearch(index, array){
-    window.open("https://www.google.com/search?q="+encodeURIComponent(array[index].Artists[0].Name+" "+new Date(array[index].Date).toDateString()+" "+array[index].V.Name));
+    window.open("https://www.google.com/search?q="+encodeURIComponent(array[index].A[0].Name+" "+new Date(array[index].D).toDateString()+" "+array[index].V.N));
   }
   openLink(index, array){
     window.open(array[index].TU);
@@ -35,35 +35,35 @@ class {
 </ul>
 $ var events = input.events;
 <if(state.sortStyle === "date")>
-$ events = events.sort(function(a,b) {return (new Date(a.Date) > new Date(b.Date)) ? 1 : ((new Date(b.Date) > new Date(a.Date)) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (new Date(a.D) > new Date(b.D)) ? 1 : ((new Date(b.D) > new Date(a.D)) ? -1 : 0);} );
 </if>
 <else-if(state.sortStyle === "venue")>
-$ events = events.sort(function(a,b) {return (a.V.Name > b.V.Name) ? 1 : ((b.V.Name > a.V.Name) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (a.V.N > b.V.N) ? 1 : ((b.V.N > a.V.N) ? -1 : 0);} );
 </else-if>
 <else-if(state.sortStyle === "artist")>
-$ events = events.sort(function(a,b) {return (a.A[0].Name > b.A[0].Name) ? 1 : ((b.A[0].Name > a.A[0].Name) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (a.A[0].N > b.A[0].N) ? 1 : ((b.A[0].N > a.A[0].N) ? -1 : 0);} );
 </else-if>
 <else-if(state.sortStyle === "city")>
-$ events = events.sort(function(a,b) {return (a.V.City > b.V.City) ? 1 : ((b.V.City > a.V.City) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (a.V.C > b.V.C) ? 1 : ((b.V.C > a.V.C) ? -1 : 0);} );
 </else-if>
 <if(state.reverse === true)>
 $ events = events.reverse();
 </if>
 <ul.listing style="width:100%; overflow:auto; display: table;" for(event in events | status-var=loop)>
-            <span.th.date.dates>${new Date(event.Date).toDateString().split(new Date().getFullYear())[0]}</span>
+            <span.th.date.dates>${new Date(event.D).toDateString().split(new Date().getFullYear())[0]}</span>
             <span.th.Artists>
             <if(event.TU !== "")>
-            <a href="#" on-click('openLink', loop.getIndex(), events)><span for(Artist in event.A | separator=" and ")>${Artist.Name}</span></a>
+            <a href="#" on-click('openLink', loop.getIndex(), events)><span for(Artist in event.A | separator=" and ")>${Artist.N}</span></a>
             </if>
             <else>
-            <a href="#" on-click('openSearch', loop.getIndex(), events)><span for(Artist in event.A | separator=" and ")>${Artist.Name}</span></a> 
+            <a href="#" on-click('openSearch', loop.getIndex(), events)><span for(Artist in event.A | separator=" and ")>${Artist.N}</span></a> 
             </else>
             </span>
             <if(event.V.Url !== "")>
-            <span.th.venue><a href="#" on-click('openVenu', loop.getIndex(), events)>${event.V.Name}</a></span>
+            <span.th.venue><a href="#" on-click('openVenu', loop.getIndex(), events)>${event.V.N}</a></span>
             </if>
             <else>
-            <span.th.venue><a href="#">${event.V.Name}</a></span>
+            <span.th.venue><a href="#">${event.V.N}</a></span>
             </else>
-            <span.th.city.cities><a href="#" on-click('openMap', loop.getIndex(), events)>${event.V.City}, ${event.V.SC}</a></span>
+            <span.th.city.cities><a href="#" on-click('openMap', loop.getIndex(), events)>${event.V.C}, ${event.V.SC}</a></span>
 </ul>
