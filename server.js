@@ -94,6 +94,36 @@ getData(0, data, function(thedata) {
     });
 });
 
+{"Date":"2017-12-03T12:00:00","Venue":{"Id":143104,"Name":"Baby's All Right ","Address":"146 Broadway","City":"Brooklyn","State":"New York","StateCode":"NY","Country":"US","CountryCode":"US","ZipCode":"10006","Url":"","Latitude":0,"Longitude":0},"Artists":[{"Id":119508,"Name":"Ex-Girlfriends"}],"TicketUrl":"http://www.shareasale.com/r.cfm?u=460319&b=234786&m=27601&afftrack=&urllink=https://www.ticketfly.com/purchase/event/1583208/tfly?utm_medium=api"}
+
+app.get("/cleantest", function(req, res){
+data
+
+for(i=0;i<data.length;i++){
+	  delete data[i].Id;
+	  delete data[i].Venue.Id;
+	  delete data[i].Venue.State;
+	  delete data[i].Venue.Country;
+	  delete data[i].Venue.CountryCode;
+	  if(data[i].Venue.Url == "")
+	  {
+	  	delete data[i].Venue.Url
+	  }
+	  for(z=0;z<data[i].Artists.length,z++)
+	  {
+	  	delete data[i].Artists[z].Id
+	  }
+	  delete data[i].Venue.Latitude;
+      delete data[i].Venue.Longitude;
+      if(data[i].TicketUrl == "")
+      {
+      	delete data[i].TicketUrl;
+      }
+
+}
+
+})
+
 app.get("/", function(req, res) {
   res.marko(indexTemplate, {
     events: data,
