@@ -94,11 +94,8 @@ getData(0, data, function(thedata) {
     });
 });
 
-{"Date":"2017-12-03T12:00:00","Venue":{"Id":143104,"Name":"Baby's All Right ","Address":"146 Broadway","City":"Brooklyn","State":"New York","StateCode":"NY","Country":"US","CountryCode":"US","ZipCode":"10006","Url":"","Latitude":0,"Longitude":0},"Artists":[{"Id":119508,"Name":"Ex-Girlfriends"}],"TicketUrl":"http://www.shareasale.com/r.cfm?u=460319&b=234786&m=27601&afftrack=&urllink=https://www.ticketfly.com/purchase/event/1583208/tfly?utm_medium=api"}
-
 app.get("/cleantest", function(req, res){
-data
-
+console.log("running data minify test");
 for(i=0;i<data.length;i++){
 	  delete data[i].Id;
 	  delete data[i].Venue.Id;
@@ -121,7 +118,7 @@ for(i=0;i<data.length;i++){
       }
 
 }
-
+console.log("dataMinified");
 })
 
 app.get("/", function(req, res) {
