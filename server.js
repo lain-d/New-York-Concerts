@@ -95,13 +95,6 @@ getData(0, data, function(thedata) {
 });
 
 app.get("/", function(req, res) {
-  res.setHeader("Cache-Control", "public, max-age=86400");
-  res.setHeader(
-    "Expires",
-    Date.today()
-      .set({ hour: 12, minute: 00, second: 00 })
-      .toUTCString()
-  );
   res.marko(indexTemplate, {
     events: data,
     numevents: numberWithCommas(data.length),
