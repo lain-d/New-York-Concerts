@@ -116,7 +116,8 @@ for(i=0;i<data.length;i++){
       {
       	delete data[i].TicketUrl;
       }
-
+      data[i].V=data[i].Venue;
+      delete data[i].Venue;
 }
 console.log("dataMinified");
 })

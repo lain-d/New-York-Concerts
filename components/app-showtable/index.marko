@@ -15,16 +15,16 @@ class {
     this.state.sortStyle = sort;
   }
   openMap(index, array){
-    window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(array[index].Venue.Name+" "+array[index].Venue.Address+" "+array[index].Venue.City+" "+array[index].Venue.StateCode));
+    window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(array[index].V.Name+" "+array[index].V.Address+" "+array[index].V.City+" "+array[index].V.StateCode));
   }
   openSearch(index, array){
-    window.open("https://www.google.com/search?q="+encodeURIComponent(array[index].Artists[0].Name+" "+new Date(array[index].Date).toDateString()+" "+array[index].Venue.Name));
+    window.open("https://www.google.com/search?q="+encodeURIComponent(array[index].Artists[0].Name+" "+new Date(array[index].Date).toDateString()+" "+array[index].V.Name));
   }
   openLink(index, array){
     window.open(array[index].TicketUrl);
   }
   openVenu(index, array){
-    window.open(array[index].Venue.Url);
+    window.open(array[index].V.Url);
   }
 }
 <ul style="width:100%; overflow:auto; display:table">
@@ -38,13 +38,13 @@ $ var events = input.events;
 $ events = events.sort(function(a,b) {return (new Date(a.Date) > new Date(b.Date)) ? 1 : ((new Date(b.Date) > new Date(a.Date)) ? -1 : 0);} );
 </if>
 <else-if(state.sortStyle === "venue")>
-$ events = events.sort(function(a,b) {return (a.Venue.Name > b.Venue.Name) ? 1 : ((b.Venue.Name > a.Venue.Name) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (a.V.Name > b.V.Name) ? 1 : ((b.V.Name > a.V.Name) ? -1 : 0);} );
 </else-if>
 <else-if(state.sortStyle === "artist")>
 $ events = events.sort(function(a,b) {return (a.Artists[0].Name > b.Artists[0].Name) ? 1 : ((b.Artists[0].Name > a.Artists[0].Name) ? -1 : 0);} );
 </else-if>
 <else-if(state.sortStyle === "city")>
-$ events = events.sort(function(a,b) {return (a.Venue.City > b.Venue.City) ? 1 : ((b.Venue.City > a.Venue.City) ? -1 : 0);} );
+$ events = events.sort(function(a,b) {return (a.V.City > b.V.City) ? 1 : ((b.V.City > a.V.City) ? -1 : 0);} );
 </else-if>
 <if(state.reverse === true)>
 $ events = events.reverse();
@@ -59,11 +59,11 @@ $ events = events.reverse();
             <a href="#" on-click('openSearch', loop.getIndex(), events)><span for(Artist in event.Artists | separator=" and ")>${Artist.Name}</span></a> 
             </else>
             </span>
-            <if(event.Venue.Url !== "")>
-            <span.th.venue><a href="#" on-click('openVenu', loop.getIndex(), events)>${event.Venue.Name}</a></span>
+            <if(event.V.Url !== "")>
+            <span.th.venue><a href="#" on-click('openVenu', loop.getIndex(), events)>${event.V.Name}</a></span>
             </if>
             <else>
-            <span.th.venue><a href="#">${event.Venue.Name}</a></span>
+            <span.th.venue><a href="#">${event.V.Name}</a></span>
             </else>
-            <span.th.city.cities><a href="#" on-click('openMap', loop.getIndex(), events)>${event.Venue.City}, ${event.Venue.StateCode}</a></span>
+            <span.th.city.cities><a href="#" on-click('openMap', loop.getIndex(), events)>${event.V.City}, ${event.V.StateCode}</a></span>
 </ul>
