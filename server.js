@@ -2,6 +2,7 @@
 require("datejs");
 require("marko/node-require").install();
 require("marko/express");
+var subdomain = require('express-subdomain');
 var express = require("express");
 var indexTemplate = require("./index.marko");
 const config = require("./config").config;
@@ -18,6 +19,12 @@ var getData = require("./lib/getData").getData;
 //Store Array in Memory Var
 var data = [];
 var phillydata = [];
+var denverdata = [];
+var seattledata =[];
+var chicagodata =[];
+var ladata =[];
+var austindata =[];
+var dcdata =[];
 
 //Get Data at Start-up from API or Redis Cache
 if (config.redisURL) {
@@ -40,7 +47,7 @@ if (config.redisURL) {
 var ontime = require("ontime");
 ontime(
   {
-    cycle: ["00:00"]
+    cycle: ["12:00:00"]
   },
   function(ot) {
     console.log("Updating From API");
@@ -91,16 +98,18 @@ app.get("/phillydata", function(req, res) {
  
 });
 
-
-app.get("/philly", function(req, res) {
-  res.marko(indexTemplate, {
+var phillyroute = express.Router();
+ 
+//api specific routes 
+phillyroute.get('/', function(req, res) {
+     res.marko(indexTemplate, {
     events: phillydata,
     numevents: phillydata.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
     city: "Philly"
   });
 });
 
-
+app.use(subdomain('philly', phillyroute));
 
 
 //Main Route
