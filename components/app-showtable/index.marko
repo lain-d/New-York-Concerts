@@ -28,10 +28,10 @@ class {
   }
 }
 <ul style="width:100%; overflow:auto; display:table">
-<span.th.thh.date on-click('reSort', 'date')>Date</span>
-<span.th.thh.arts on-click('reSort', 'artist')>Artists</span>
-<span.th.thh.venues on-click('reSort', 'venue')>Venue</span>
-<span.th.thh.city on-click('reSort', 'city')>City</span>
+<span.th.thh.d on-click('reSort', 'date')>Date</span>
+<span.th.thh on-click('reSort', 'artist')>Artists</span>
+<span.th.thh on-click('reSort', 'venue')>Venue</span>
+<span.th.thh.c on-click('reSort', 'city')>City</span>
 </ul>
 $ var events = input.events;
 <if(state.sortStyle === "date")>
@@ -49,21 +49,24 @@ $ events = events.sort(function(a,b) {return (a.V.C > b.V.C) ? 1 : ((b.V.C > a.V
 <if(state.reverse === true)>
 $ events = events.reverse();
 </if>
-<ul.listing style="width:100%; overflow:auto; display: table;" for(event in events | status-var=loop)>
-            <span.th.date.dates>${new Date(event.D).toDateString().split(new Date().getFullYear())[0]}</span>
-            <span.th.Artists>
-            <if(event.TU !== "")>
-            <a href="#" on-click('openLink', loop.getIndex(), events)><span for(Artist in event.A | separator=" and ")>${Artist.N}</span></a>
-            </if>
-            <else>
-            <a href="#" on-click('openSearch', loop.getIndex(), events)><span for(Artist in event.A | separator=" and ")>${Artist.N}</span></a> 
-            </else>
+<ul for(event in events | status-var=loop)>
+            <span.th.d>${new Date(event.D).toDateString().split(new Date().getFullYear())[0]}</span>
+            <if(event.TU !== undefined)>
+            <span.th on-click('openLink', loop.getIndex(), events)>
+            <span for(Artist in event.A | separator=" and ")>${Artist.N}</span>
             </span>
-            <if(event.V.Url !== "")>
-            <span.th.venue><a href="#" on-click('openVenu', loop.getIndex(), events)>${event.V.N}</a></span>
             </if>
             <else>
-            <span.th.venue><a href="#">${event.V.N}</a></span>
+            <span.th on-click('openSearch', loop.getIndex(), events)>
+            <for(Artist in event.A | separator=" and ")>${Artist.N}</for>
+            </span>
             </else>
-            <span.th.city.cities><a href="#" on-click('openMap', loop.getIndex(), events)>${event.V.C}, ${event.V.SC}</a></span>
+            <if(event.V.Url !== undefined)>
+            <span.th on-click('openVenu', loop.getIndex(), events)>${event.V.N}</span>
+            </if>
+            <else>
+
+            <span.th><a href="#">${event.V.N}</a></span>
+            </else>
+            <span.th.c on-click('openMap', loop.getIndex(), events)>${event.V.C}, ${event.V.SC}</span>
 </ul>

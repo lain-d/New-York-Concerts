@@ -38,7 +38,7 @@ if (config.redisURL) {
 var ontime = require("ontime");
 ontime(
   {
-    cycle: ["12:00:00"]
+    cycle: ["00:00"]
   },
   function(ot) {
     console.log("Updating From API");
@@ -61,6 +61,7 @@ require("lasso").configure({
   fingerprintsEnabled: isProduction
 });
 
+//Helper Function to add comma to event count.
 const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -73,27 +74,6 @@ app.get("/static/*", function(req, res, next) {
   app.use(require("lasso/middleware").serveStatic());
   next();
 });
-
-app.get("/refresh", function(req, res){
-
-getData(0, data, function(thedata) {
-      console.log("Saving Show Data in Memory");
-      data = thedata;
-      	  res.setHeader("Cache-Control", "public, max-age=86400");
-  res.setHeader(
-    "Expires",
-    Date.today()
-      .set({ hour: 12, minute: 00, second: 00 })
-      .toUTCString()
-  );
-  res.marko(indexTemplate, {
-    events: data,
-    numevents: numberWithCommas(data.length),
-    city: config.cityName
-  });
-    });
-});
-
 
 
 app.get("/cleantest", function(req, res){
