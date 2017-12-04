@@ -40,7 +40,7 @@ typings/
 .yarn-integrity
 # dotenv environment variables file
 .env
-page.marko.js
+*.marko.js
 package-lock.json
 static
 views/page.marko.js

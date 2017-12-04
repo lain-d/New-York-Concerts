@@ -1,4 +1,3 @@
-
 //Requirements and Config
 require("datejs");
 require("marko/node-require").install();
