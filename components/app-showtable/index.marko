@@ -65,8 +65,7 @@ $ events = events.reverse();
             <span.th on-click('openVenu', loop.getIndex(), events)>${event.V.N}</span>
             </if>
             <else>
-
-            <span.th><a href="#">${event.V.N}</a></span>
+            <span.th>${event.V.N}</span>
             </else>
             <span.th.c on-click('openMap', loop.getIndex(), events)>${event.V.C}, ${event.V.SC}</span>
 </ul>

@@ -120,6 +120,11 @@ for(i=0;i<data.length;i++){
 
 }
 console.log("dataMinified");
+ var client2 = require("redis").createClient(config.redisURL);
+            client2.set("concertCache", JSON.stringify(data), function() {
+              console.log("Show Data Updatated at " + Date().toString());
+              client2.quit();
+              })
 })
 
 app.get("/", function(req, res) {
