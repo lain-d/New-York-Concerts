@@ -27,11 +27,11 @@ class {
     window.open(array[index].V.Url);
   }
 }
-<ul style="width:100%; overflow:auto; display:table">
-<span.th.thh.d on-click('reSort', 'date')>Date</span>
-<span.th.thh on-click('reSort', 'artist')>Artists</span>
-<span.th.thh on-click('reSort', 'venue')>Venue</span>
-<span.th.thh.c on-click('reSort', 'city')>City</span>
+<ul>
+<li.thh.d on-click('reSort', 'date')>Date</li>
+<li.thh on-click('reSort', 'artist')>Artists</li>
+<li.thh on-click('reSort', 'venue')>Venue</li>
+<li.thh.c on-click('reSort', 'city')>City</li>
 </ul>
 $ var events = input.events;
 <if(state.sortStyle === "date")>
@@ -50,22 +50,22 @@ $ events = events.sort(function(a,b) {return (a.V.C > b.V.C) ? 1 : ((b.V.C > a.V
 $ events = events.reverse();
 </if>
 <ul for(event in events | status-var=loop)>
-            <span.th.d>${new Date(event.D).toDateString().split(new Date().getFullYear())[0]}</span>
+            <li.d>${new Date(event.D).toDateString().split(new Date().getFullYear())[0]}</li>
             <if(event.TU !== undefined)>
-            <span.th on-click('openLink', loop.getIndex(), events)>
-            <span for(Artist in event.A | separator=" and ")>${Artist.N}</span>
-            </span>
+            <li on-click('openLink', loop.getIndex(), events)>
+            <for(Artist in event.A | separator=", ")>${Artist.N}</for>
+            </li>
             </if>
             <else>
-            <span.th on-click('openSearch', loop.getIndex(), events)>
-            <for(Artist in event.A | separator=" and ")>${Artist.N}</for>
-            </span>
+            <li on-click('openSearch', loop.getIndex(), events)>
+            <for(Artist in event.A | separator=", ")>${Artist.N}</for>
+            </li>
             </else>
             <if(event.V.Url !== undefined)>
-            <span.th on-click('openVenu', loop.getIndex(), events)>${event.V.N}</span>
+            <li on-click('openVenu', loop.getIndex(), events)>${event.V.N}</li>
             </if>
             <else>
-            <span.th>${event.V.N}</span>
+            <li>${event.V.N}</li>
             </else>
-            <span.th.c on-click('openMap', loop.getIndex(), events)>${event.V.C}, ${event.V.SC}</span>
+            <li.c on-click('openMap', loop.getIndex(), events)>${event.V.C}, ${event.V.SC}</li>
 </ul>
