@@ -79,7 +79,7 @@ app.get("/static/*", function(req, res, next) {
 app.get("/phillydata", function(req, res) {
 
     console.log("Updating From API");
-    getData(0, data, config.zipCode, "concertCache", function(thedata) {
+    getData(0, phillydata, "19102", "PhillyconcertCache", function(thedata) {
       console.log("Saving Show Data in Memory");
       phillydata = thedata;
       res.marko(indexTemplate, {
