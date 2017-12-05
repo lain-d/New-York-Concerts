@@ -80,10 +80,39 @@ ontime(
   },
   function(ot) {
     console.log("Updating From API");
-    getData(0, data, config.zipCode, "concertCache", function(thedata) {
-      console.log("Saving Show Data in Memory");
-      data = thedata;
-    });
+  getData(0, data, config.zipCode, "concertCache", function(thedata) {
+    console.log("NYC Saving Show Data in Memory");
+    data = thedata;
+    console.log("Get Philly");
+    getData(0, phillydata, "19102", "phillyconcertCache", function(thedata2) {
+    console.log("Saving Show Data in Memory");
+    phillydata = thedata2;
+        getData(0, denverdata, "19102", "denverconcertCache", function(thedata3) {
+    console.log("Saving Show Data in Memory");
+    denverdata = thedata3;
+            getData(0, seattledata, "19102", "seattleconcertCache", function(thedata4) {
+    console.log("Saving Show Data in Memory");
+    seattledata = thedata4;
+                getData(0, chicagodata, "19102", "chicagoconcertCache", function(thedata5) {
+    console.log("Saving Show Data in Memory");
+    chicagodata = thedata5;
+     getData(0, ladata, "19102", "laconcertCache", function(thedata6) {
+    console.log("Saving Show Data in Memory");
+    ladata = thedata6;
+      getData(0, austindata, "19102", "austinconcertCache", function(thedata7) {
+    console.log("Saving Show Data in Memory");
+    austindata = thedata7;
+         getData(0, dcdata, "19102", "dcconcertCache", function(thedata8) {
+    console.log("Saving Show Data in Memory");
+    dcdata = thedata8;
+  });
+  });
+  });
+  });
+  });
+  });
+  });
+});
     ot.done();
     return;
   }
