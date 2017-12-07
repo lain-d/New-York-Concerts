@@ -17,7 +17,7 @@ app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 
 //Build the showlists
-var showList = require("./lib/showList");
+var showList = require("./lib/showlist");
 var nycshowlist = new showList(config.zipCode, "concertCache", function(){this.update()});
 var phillyshowlist = new showList("19102", "phillyconcertCache", function(){this.update()});
 //var denvershowlist = new showList(config.zipCode, "denverconcertCache", function(){this.update()});
