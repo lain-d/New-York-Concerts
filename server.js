@@ -18,14 +18,14 @@ app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 //Build the showlists
 var showList = require("./lib/showlist");
-var nycshowlist = new showList(config.zipCode, "concertCache", function(){this.update()});
-var phillyshowlist = new showList("19102", "phillyconcertCache", function(){this.update()});
-//var denvershowlist = new showList(config.zipCode, "denverconcertCache", function(){this.update()});
-//var seattleshowlist = new showList(config.zipCode, "seattleconcertCache", function(){this.update()});
-//var chicagoshowlist = new showList(config.zipCode, "chicagoconcertCache", function(){this.update()});
-//var lashowlist = new showList(config.zipCode, "laconcertCache", function(){this.update()});
-//var austinshowlist = new showList(config.zipCode, "austinconcertCache", function(){this.update()});
-//var dcshowlist = new showList(config.zipCode, "dcconcertCache", function(){this.update()});
+var nycshowlist = new showList(config.zipCode, "concertCache");
+var phillyshowlist = new showList("19102", "phillyconcertCache");
+//var denvershowlist = new showList(config.zipCode, "denverconcertCache");
+//var seattleshowlist = new showList(config.zipCode, "seattleconcertCache");
+//var chicagoshowlist = new showList(config.zipCode, "chicagoconcertCache");
+//var lashowlist = new showList(config.zipCode, "laconcertCache");
+//var austinshowlist = new showList(config.zipCode, "austinconcertCache");
+//var dcshowlist = new showList(config.zipCode, "dcconcertCache");
 
 
 //Update Data Script on the Hour
