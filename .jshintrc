@@ -30,7 +30,7 @@
     "regexp": false,
     "undef": true,
     "sub": false,
-    "white": false,
+    "white": true,
     "eqeqeq": false,
     "latedef": true,
     "unused": "vars",

@@ -16,61 +16,18 @@ app.use(compression());
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 var getData = require("./lib/getData").getData;
 
-//Store Array in Memory Var
-var data = [];
-var phillydata = [];
-var denverdata = [];
-var seattledata =[];
-var chicagodata =[];
-var ladata =[];
-var austindata =[];
-var dcdata =[];
 
-//Get Data at Start-up from API or Redis Cache
-if (config.redisURL) {
-  var client = require("redis").createClient(config.redisURL);
-  console.log("Server Starting Getting Cache From Redis");
-  client.get("concertCache", function(err, reply) {
-    data = JSON.parse(reply);
-    console.log("Data Loaded from Cache, Closing Redis");
-    client.quit();
-  });
-} else {
-  console.log("no Redis attempting to get data from API");
-  getData(0, data, config.zipCode, "concertCache", function(thedata) {
-    console.log("NYC Saving Show Data in Memory");
-    data = thedata;
-    console.log("Get Philly");
-    getData(0, phillydata, "19102", "phillyconcertCache", function(thedata2) {
-    console.log("Saving Show Data in Memory");
-    phillydata = thedata2;
-        getData(0, denverdata, "19102", "denverconcertCache", function(thedata3) {
-    console.log("Saving Show Data in Memory");
-    denverdata = thedata3;
-            getData(0, seattledata, "19102", "seattleconcertCache", function(thedata4) {
-    console.log("Saving Show Data in Memory");
-    seattledata = thedata4;
-                getData(0, chicagodata, "19102", "chicagoconcertCache", function(thedata5) {
-    console.log("Saving Show Data in Memory");
-    chicagodata = thedata5;
-     getData(0, ladata, "19102", "laconcertCache", function(thedata6) {
-    console.log("Saving Show Data in Memory");
-    ladata = thedata6;
-      getData(0, austindata, "19102", "austinconcertCache", function(thedata7) {
-    console.log("Saving Show Data in Memory");
-    austindata = thedata7;
-         getData(0, dcdata, "19102", "dcconcertCache", function(thedata8) {
-    console.log("Saving Show Data in Memory");
-    dcdata = thedata8;
-  });
-  });
-  });
-  });
-  });
-  });
-  });
-});
-}
+//Build the showlists
+var showList = require("./lib/showList");
+var nycshowlist = new showList(config.zipCode, "concertCache", function(){this.update()});
+var phillyshowlist = new showList("19102", "phillyconcertCache", function(){this.update()});
+//var denvershowlist = new showList(config.zipCode, "denverconcertCache", function(){this.update()});
+//var seattleshowlist = new showList(config.zipCode, "seattleconcertCache", function(){this.update()});
+//var chicagoshowlist = new showList(config.zipCode, "chicagoconcertCache", function(){this.update()});
+//var lashowlist = new showList(config.zipCode, "laconcertCache", function(){this.update()});
+//var austinshowlist = new showList(config.zipCode, "austinconcertCache", function(){this.update()});
+//var dcshowlist = new showList(config.zipCode, "dcconcertCache", function(){this.update()});
+
 
 //Update Data Script on the Hour
 var ontime = require("ontime");
@@ -80,39 +37,14 @@ ontime(
   },
   function(ot) {
     console.log("Updating From API");
-  getData(0, data, config.zipCode, "concertCache", function(thedata) {
-    console.log("NYC Saving Show Data in Memory");
-    data = thedata;
-    console.log("Get Philly");
-    getData(0, phillydata, "19102", "phillyconcertCache", function(thedata2) {
-    console.log("Saving Show Data in Memory");
-    phillydata = thedata2;
-        getData(0, denverdata, "19102", "denverconcertCache", function(thedata3) {
-    console.log("Saving Show Data in Memory");
-    denverdata = thedata3;
-            getData(0, seattledata, "19102", "seattleconcertCache", function(thedata4) {
-    console.log("Saving Show Data in Memory");
-    seattledata = thedata4;
-                getData(0, chicagodata, "19102", "chicagoconcertCache", function(thedata5) {
-    console.log("Saving Show Data in Memory");
-    chicagodata = thedata5;
-     getData(0, ladata, "19102", "laconcertCache", function(thedata6) {
-    console.log("Saving Show Data in Memory");
-    ladata = thedata6;
-      getData(0, austindata, "19102", "austinconcertCache", function(thedata7) {
-    console.log("Saving Show Data in Memory");
-    austindata = thedata7;
-         getData(0, dcdata, "19102", "dcconcertCache", function(thedata8) {
-    console.log("Saving Show Data in Memory");
-    dcdata = thedata8;
-  });
-  });
-  });
-  });
-  });
-  });
-  });
-});
+    nycshowlist.update();
+    phillyshowlist.update();
+    //denvershowlist.update();
+    //seattleshowlist.update();
+    //chicagoshowlist.update();
+    //lashowlist.update();
+    //austinshowlist.update();
+    //dcshowlist.update();
     ot.done();
     return;
   }
@@ -130,6 +62,17 @@ require("lasso").configure({
 
 //Routes
 
+var phillyr = express.Router();
+app.use(subdomain('philly', phillyr));
+//api specific routes 
+phillyr.get('/', function(req, res) {
+     res.marko(indexTemplate, {
+    events: phillyshowlist.theShowList,
+    numevents: phillyshowlist.theShowList.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    city: "Philly"
+  });
+});
+
 //Static Files
 app.get("/static/*", function(req, res, next) {
   //lasso middleware doesn't put cache-control, route to force Cache Control Headers for static content, then send it to lasso middleware
@@ -139,97 +82,11 @@ app.get("/static/*", function(req, res, next) {
   next();
 });
 
-//Philly Test
-
-app.get("/phillydata", function(req, res) {
-
-    console.log("Updating From API");
-    getData(0, phillydata, "19102", "PhillyconcertCache", function(thedata) {
-      console.log("Saving Show Data in Memory");
-      phillydata = thedata;
-      res.marko(indexTemplate, {
-    events: phillydata,
-    numevents: phillydata.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    city: "Philly"
-  });
-    });
- 
-});
-
-var phillyr = express.Router();
- //api specific routes 
-phillyr.get('/', function(req, res) {
-     res.marko(indexTemplate, {
-    events: phillydata,
-    numevents: phillydata.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    city: "Philly"
-  });
-});
-var denverr = express.Router();
- //api specific routes 
-denverr.get('/', function(req, res) {
-     res.marko(indexTemplate, {
-    events: denverdata,
-    numevents: denverdata.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    city: "Denver"
-  });
-     });
-var chicagor = express.Router();
- //api specific routes 
-chicagor.get('/', function(req, res) {
-     res.marko(indexTemplate, {
-    events: chicagodata,
-    numevents: chicagodata.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    city: "Chicago"
-  });
-     });
-var lar = express.Router();
- //api specific routes 
-lar.get('/', function(req, res) {
-     res.marko(indexTemplate, {
-    events: ladata,
-    numevents: ladata.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    city: "LA"
-  });
-     });
-var dcr = express.Router();
- //api specific routes 
-dcr.get('/', function(req, res) {
-     res.marko(indexTemplate, {
-    events: dcdata,
-    numevents: dcdata.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    city: "DC"
-});});
-var austinr = express.Router();
- //api specific routes 
-austinr.get('/', function(req, res) {
-     res.marko(indexTemplate, {
-    events: austindata,
-    numevents: austindata.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    city: "Austin"
-});     });
-var seattler = express.Router();
- //api specific routes 
-seattler.get('/', function(req, res) {
-     res.marko(indexTemplate, {
-    events: seattledata,
-    numevents: seattledata.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    city: "Seattle"
-});    }); 
-
-app.use(subdomain('philly', phillyr));
-app.use(subdomain('denver', denverr));
-app.use(subdomain('chicago', chicagor));
-app.use(subdomain('dc', dcr));
-app.use(subdomain('la', lar));
-app.use(subdomain('seattle', seattler));
-app.use(subdomain('austin', austinr));
-
 //Main Route for NYC
 app.get("/", function(req, res) {
   res.marko(indexTemplate, {
-    events: data,
-    numevents: data.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    events: nycshowlist.theShowList,
+    numevents: nycshowlist.theShowList.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
     city: config.cityName
   });
 });
