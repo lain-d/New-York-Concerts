@@ -14,7 +14,6 @@ var port = process.env.PORT || 8080;
 var compression = require("compression");
 app.use(compression());
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
-var getData = require("./lib/getData").getData;
 
 
 //Build the showlists
