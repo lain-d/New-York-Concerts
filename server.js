@@ -81,7 +81,7 @@ phillyr.get('/', function(req, res) {
 });
 
 var denr = express.Router();
-app.use(subdomain('philly', phillyr));
+app.use(subdomain('denver', denr));
 //api specific routes 
 denr.get('/', function(req, res) {
      res.marko(indexTemplate, {
@@ -92,7 +92,7 @@ denr.get('/', function(req, res) {
 });
 
 var dcr = express.Router();
-app.use(subdomain('dc', phillyr));
+app.use(subdomain('dc', dcr));
 //api specific routes 
 dcr.get('/', function(req, res) {
      res.marko(indexTemplate, {
@@ -103,7 +103,7 @@ dcr.get('/', function(req, res) {
 });
 
 var austinr = express.Router();
-app.use(subdomain('austin', phillyr));
+app.use(subdomain('austin', austinr));
 //api specific routes 
 austinr.get('/', function(req, res) {
      res.marko(indexTemplate, {
@@ -114,7 +114,7 @@ austinr.get('/', function(req, res) {
 });
 
 var lar = express.Router();
-app.use(subdomain('la', phillyr));
+app.use(subdomain('la', lar));
 //api specific routes 
 lar.get('/', function(req, res) {
      res.marko(indexTemplate, {
@@ -125,7 +125,7 @@ lar.get('/', function(req, res) {
 });
 
 var chir = express.Router();
-app.use(subdomain('chicago', phillyr));
+app.use(subdomain('chicago', chir));
 //api specific routes 
 chir.get('/', function(req, res) {
      res.marko(indexTemplate, {
@@ -136,7 +136,7 @@ chir.get('/', function(req, res) {
 });
 
 var seatr = express.Router();
-app.use(subdomain('philly', phillyr));
+app.use(subdomain('seattle', seatr));
 //api specific routes 
 seatr.get('/', function(req, res) {
      res.marko(indexTemplate, {
