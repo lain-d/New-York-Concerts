@@ -19,12 +19,12 @@ app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 var showList = require("./lib/showlist");
 var nycshowlist = new showList(config.zipCode, "concertCache");
 var phillyshowlist = new showList("19102", "phillyconcertCache");
-//var denvershowlist = new showList(config.zipCode, "denverconcertCache");
-//var seattleshowlist = new showList(config.zipCode, "seattleconcertCache");
-//var chicagoshowlist = new showList(config.zipCode, "chicagoconcertCache");
-//var lashowlist = new showList(config.zipCode, "laconcertCache");
-//var austinshowlist = new showList(config.zipCode, "austinconcertCache");
-//var dcshowlist = new showList(config.zipCode, "dcconcertCache");
+var denvershowlist = new showList(config.zipCode, "denverconcertCache");
+var seattleshowlist = new showList(config.zipCode, "seattleconcertCache");
+var chicagoshowlist = new showList(config.zipCode, "chicagoconcertCache");
+var lashowlist = new showList(config.zipCode, "laconcertCache");
+var austinshowlist = new showList(config.zipCode, "austinconcertCache");
+var dcshowlist = new showList(config.zipCode, "dcconcertCache");
 
 
 //Update Data Script on the Hour
@@ -36,14 +36,22 @@ ontime(
   function(ot) {
     console.log("Updating From API");
     nycshowlist.update(function(){
-      phillyshowlist.update(function(){});
-    });
-    //denvershowlist.update();
-    //seattleshowlist.update();
-    //chicagoshowlist.update();
-    //lashowlist.update();
-    //austinshowlist.update();
-    //dcshowlist.update();
+      phillyshowlist.update(function(){
+        denvershowlist.update(function(){
+         seattleshowlist.update(function(){
+          chicagoshowlist.update(function(){
+            lashowlist.update(function(){
+              austinshowlist.update(function(){
+                dcshowlist.update(function(){
+                  console.log("all cities Updated");
+                });
+              });
+            });
+          });
+         }); 
+        });
+      });
+    });  
     ot.done();
     return;
   }
