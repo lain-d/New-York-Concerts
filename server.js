@@ -80,6 +80,72 @@ phillyr.get('/', function(req, res) {
   });
 });
 
+var denr = express.Router();
+app.use(subdomain('philly', phillyr));
+//api specific routes 
+denr.get('/', function(req, res) {
+     res.marko(indexTemplate, {
+    events: denvershowlist.theShowList,
+    numevents: denvershowlist.theShowList.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    city: "Denver"
+  });
+});
+
+var dcr = express.Router();
+app.use(subdomain('dc', phillyr));
+//api specific routes 
+dcr.get('/', function(req, res) {
+     res.marko(indexTemplate, {
+    events: dcshowlist.theShowList,
+    numevents: dcshowlist.theShowList.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    city: "DC"
+  });
+});
+
+var austinr = express.Router();
+app.use(subdomain('austin', phillyr));
+//api specific routes 
+austinr.get('/', function(req, res) {
+     res.marko(indexTemplate, {
+    events: austinshowlist.theShowList,
+    numevents: austinshowlist.theShowList.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    city: "Austin"
+  });
+});
+
+var lar = express.Router();
+app.use(subdomain('la', phillyr));
+//api specific routes 
+lar.get('/', function(req, res) {
+     res.marko(indexTemplate, {
+    events: lashowlist.theShowList,
+    numevents: lashowlist.theShowList.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    city: "LA"
+  });
+});
+
+var chir = express.Router();
+app.use(subdomain('chicago', phillyr));
+//api specific routes 
+chir.get('/', function(req, res) {
+     res.marko(indexTemplate, {
+    events: chicagoshowlist.theShowList,
+    numevents: chicagoshowlist.theShowList.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    city: "Chicago"
+  });
+});
+
+var seatr = express.Router();
+app.use(subdomain('philly', phillyr));
+//api specific routes 
+seatr.get('/', function(req, res) {
+     res.marko(indexTemplate, {
+    events: seattleshowlist.theShowList,
+    numevents: seattleshowlist.theShowList.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    city: "Seattle"
+  });
+});
+
 //Static Files
 app.get("/static/*", function(req, res, next) {
   //lasso middleware doesn't put cache-control, route to force Cache Control Headers for static content, then send it to lasso middleware
