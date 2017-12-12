@@ -15,7 +15,6 @@ var compression = require("compression");
 app.use(compression());
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
-
 //Build the showlists
 var showList = require("./lib/showlist");
 var nycshowlist = new showList(config.zipCode, "concertCache");
@@ -36,8 +35,9 @@ ontime(
   },
   function(ot) {
     console.log("Updating From API");
-    nycshowlist.update();
-    phillyshowlist.update();
+    nycshowlist.update(function(){
+      phillyshowlist.update(function(){});
+    });
     //denvershowlist.update();
     //seattleshowlist.update();
     //chicagoshowlist.update();
