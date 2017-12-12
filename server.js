@@ -19,12 +19,12 @@ app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 var showList = require("./lib/showlist");
 var nycshowlist = new showList(config.zipCode, "concertCache");
 var phillyshowlist = new showList("19102", "phillyconcertCache");
-var denvershowlist = new showList(config.zipCode, "denverconcertCache");
-var seattleshowlist = new showList(config.zipCode, "seattleconcertCache");
-var chicagoshowlist = new showList(config.zipCode, "chicagoconcertCache");
-var lashowlist = new showList(config.zipCode, "laconcertCache");
-var austinshowlist = new showList(config.zipCode, "austinconcertCache");
-var dcshowlist = new showList(config.zipCode, "dcconcertCache");
+var denvershowlist = new showList("80012", "denverconcertCache");
+var seattleshowlist = new showList("98101", "seattleconcertCache");
+var chicagoshowlist = new showList("60611", "chicagoconcertCache");
+var lashowlist = new showList("90041", "laconcertCache");
+var austinshowlist = new showList("78701", "austinconcertCache");
+var dcshowlist = new showList("20001", "dcconcertCache");
 
 
 //Update Data Script on the Hour
