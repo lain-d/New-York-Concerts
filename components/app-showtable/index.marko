@@ -35,7 +35,7 @@ class {
 </ul>
 $ var events = input.events;
 <if(state.sortStyle === "date")>
-$ events = events.sort(function(a,b) {return (new Date(a.D) > new Date(b.D)) ? 1 : ((new Date(b.D) > new Date(a.D)) ? -1 : 0);} );
+$ events = events.sort(function (a, b) { return new Date(a.D) - new Date(b.D) || a.A[0].N.localeCompare(b.A[0].N);});
 </if>
 <else-if(state.sortStyle === "venue")>
 $ events = events.sort(function(a,b) {return (a.V.N > b.V.N) ? 1 : ((b.V.N > a.V.N) ? -1 : 0);} );
