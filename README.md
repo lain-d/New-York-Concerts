@@ -1,5 +1,8 @@
 # New-York-Concerts
 
+# SORRY! JAM BASE HAS TAKEN THEIR API OFFLINE, KILLING THIS APP FOR NOW :(
+
+
 A simple webserver that generates a bare bones list of upcoming concerts via JamBase
 
 See it in action at
